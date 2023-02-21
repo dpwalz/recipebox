@@ -13,10 +13,9 @@ serviceMethods.getRecipesByUser = async ( body ) => {
     return allRecipes;
 }
 
-serviceMethods.deleteRecipe = async( body ) => {
+serviceMethods.deleteRecipe = async( recipeToDelete ) => {
     try {
-        const { recipe_id, user_id } = body
-        const removeRecipe = await Recipe.deleteRecipe(recipe_id, user_id);
+        const removeRecipe = await Recipe.deleteRecipe(recipeToDelete);
         if(removeRecipe.affectedRows){
             return removeRecipe;
         } else {

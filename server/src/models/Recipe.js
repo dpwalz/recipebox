@@ -19,9 +19,10 @@ modelMethods.getAllRecipes = (query) => {
 
 }
 
-modelMethods.deleteRecipe = (recipe_id, user_id) => {
+modelMethods.deleteRecipe = (recipeToDelete) => {
   return new Promise( async(resolve, reject) => {
     try {
+      const { recipe_id, user_id } = recipeToDelete
       const results = await connection.query(
         `DELETE FROM RECIPES WHERE recipe_id = ? AND user_id = ?`,
         [recipe_id, user_id]

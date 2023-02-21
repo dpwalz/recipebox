@@ -16,7 +16,7 @@ serviceMethods.addNewItem = async (newItem) => {
         };
     
         const createdItem = await Item.addNewItem(itemToInsert);
-        console.log(createdItem);
+        
         return createdItem;
     } catch (err) {
         throw err;

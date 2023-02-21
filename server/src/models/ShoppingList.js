@@ -7,7 +7,7 @@ modelMethods.createList = (query) => {
     return new Promise( async(resolve, reject) => {
         try {
             const user_id = query.user_id || null;
-            const list_id = query.list_id;
+            const { list_id } = query;
             const results = await connection.query(
                 `INSERT INTO SHOPPING_LIST(user_id, list_id)
                 VALUES(?, ?)`,
