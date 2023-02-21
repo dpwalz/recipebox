@@ -1,3 +1,4 @@
+const serviceMethods = require("../services/listService");
 const listService = require("../services/listService");
 
 const controllerMethods = {};
@@ -64,6 +65,24 @@ controllerMethods.addIngredient = async(req, res) => {
         body.list_id = list_id;
         const newIngredient = await listService.addIngredient(body);
         res.status(200).send({status: "OK", data: newIngredient});
+    } catch (err) {
+        res.status(err?.status || 500).send({
+            status: "FAILED",
+            data: {error: err?.message || err}
+        })
+    }
+}
+
+controllerMethods.removeIngredient = async(req, res) => {
+    try {
+        const { list_id } = req.params;
+        const { body } = req;
+        const itemToRemove = {
+            list_id: list_id,
+            ingredient_id: body.ingredient_id
+        }
+        const removeItem = serviceMethods.removeIngredient(itemToRemove);
+        res.status(200).send({status: "OK", data: removeItem});
     } catch (err) {
         res.status(err?.status || 500).send({
             status: "FAILED",

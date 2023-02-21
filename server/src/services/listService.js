@@ -1,4 +1,3 @@
-const { query } = require("express");
 const { v4: uuid } = require("uuid");
 const List = require("../models/ShoppingList");
 const { combineUnits } = require("../config/helper");
@@ -78,6 +77,22 @@ serviceMethods.updateIngredient = async(item) => {
         return updateItem;
     } catch (err) {
         return err;
+    }
+}
+
+serviceMethods.removeIngredient = async(item) => {
+    try {
+        const { list_id, ingredient_id } = item;
+        const removeItem = await List.removeIngredient(list_id, ingredient_id);
+        if(removeItem.affectedRows){
+            return removeItem;
+        } else {
+            const error = new Error("Item unavailable for delete action.");
+            error.status = 404;
+            throw error
+        }
+    } catch (err) {
+        throw err;
     }
 }
 
