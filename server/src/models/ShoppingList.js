@@ -35,11 +35,11 @@ modelMethods.getListsByUser = (query) => {
     })
 }
 
-modelMethods.getListById = (list_id) => {
+modelMethods.getListDetailsById = (list_id) => {
     return new Promise( async(resolve, reject) => {
         try {
             const result = await connection.query(
-                `SELECT * FROM SHOPPING_LIST WHERE list_id = ?`,
+                `SELECT * FROM SHOPPING_LIST_DETAILS WHERE list_id = ?`,
                 [list_id]
             );
             return resolve(result);

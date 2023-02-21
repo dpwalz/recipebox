@@ -32,4 +32,19 @@ controllerMethods.getListsByUser = async(req, res) => {
     }
 }
 
+controllerMethods.getListDetailsById = async(req, res) => {
+    try {
+        const { list_id } = req.params;
+        const listDetails = await listService.getListDetailsById(list_id);
+        res.status(200).send({
+            status: "OK", 
+            data: listDetails
+        });
+    } catch (err) {
+        res.status(err?.status || 500).send({
+            data: { error: err?.message || err }
+        });
+    }
+}
+
 module.exports = controllerMethods;

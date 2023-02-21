@@ -8,4 +8,6 @@ router.post("/", checkUserId, listController.createList);
 
 router.get("/", checkToken, listController.getListsByUser );
 
+router.get("/:list_id", listController.getListDetailsById);
+
 module.exports = router;

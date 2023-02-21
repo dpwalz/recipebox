@@ -27,6 +27,15 @@ serviceMethods.getListsByUser = async(user) => {
     }
 }
 
+serviceMethods.getListDetailsById = async(list) => {
+    try {
+        const listDetails = await List.getListDetailsById(list);
+        return listDetails;
+    } catch (err) {
+        return err;
+    }
+}
+
 
 
 module.exports = serviceMethods;
