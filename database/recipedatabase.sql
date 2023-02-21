@@ -130,12 +130,12 @@ VALUES
 DROP TABLE IF EXISTS SHOPPING_LIST_DETAILS;
 CREATE TABLE SHOPPING_LIST_DETAILS(
 	list_id 				varchar(255) DEFAULT(uuid()) not null,
-	ingredient 				varchar(255) DEFAULT(uuid()) not null,
+	ingredient_id 				varchar(255) DEFAULT(uuid()) not null,
 	quantity				decimal(13, 2),
 	unit 					varchar(255),
-	primary key (list_id, ingredient),
+	primary key (list_id, ingredient_id),
     foreign key (list_id) references SHOPPING_LIST(list_id) ON DELETE CASCADE,
-	foreign key (ingredient) references INGREDIENTS(ingredient_id)
+	foreign key (ingredient_id) references INGREDIENTS(ingredient_id)
 );
 
 SELECT * FROM SHOPPING_LIST;

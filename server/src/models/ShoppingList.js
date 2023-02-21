@@ -54,15 +54,15 @@ modelMethods.addIngredient = (query) => {
     return new Promise( async(resolve, reject) => {
         try {
             const {
-                ingredient,
+                ingredient_id,
                 list_id,
                 quantity, 
                 unit
             } = query; 
             const insert = connection.query(
-                `INSERT INTO SHOPPING_LIST_DETAILS(list_id, ingredient, quantity, unit)
+                `INSERT INTO SHOPPING_LIST_DETAILS(list_id, ingredient_id, quantity, unit)
                 VALUES(?, ?, ?, ?)`,
-                [list_id, ingredient, quantity, unit]
+                [list_id, ingredient_id, quantity, unit]
             );
             return resolve(insert);
         } catch (err) {
@@ -112,6 +112,28 @@ modelMethods.removeIngredient = (list_id, ingredient) => {
         }
     })
 }
+
+modelMethods.updateIngredient = (item) => {
+    return new Promise( async(resolve, reject) => {
+        try {
+            const { 
+                ingredient_id,
+                list_id, 
+                quantity, 
+                unit } = item;
+            const result = await connection.query(
+                `UPDATE SHOPPING_LIST_DETAILS
+                SET quantity = ?, unit = ?
+                WHERE list_id = ? AND ingredient_id = ?`,
+                [quantity, unit, list_id, ingredient_id]
+            )
+            return resolve(result);
+        } catch (err) {
+            return reject(err);
+        }
+    });
+}
+
 
 
 module.exports = modelMethods; 

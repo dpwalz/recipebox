@@ -1,6 +1,7 @@
 const { query } = require("express");
 const { v4: uuid } = require("uuid");
 const List = require("../models/ShoppingList");
+const { combineUnits } = require("../config/helper");
 
 const serviceMethods = {};
 
@@ -36,6 +37,48 @@ serviceMethods.getListDetailsById = async(list) => {
     }
 }
 
+serviceMethods.addIngredient = async(newIngredient) => {
+    try {
+        const { ingredient_id, list_id } = newIngredient;
+        const existingItem = await serviceMethods.getIngredientById(newIngredient);
+        let itemDetails;
+        if(existingItem){
+            itemDetails = await combineUnits(newIngredient, existingItem);
+            console.log(itemDetails)
+            const itemToUpdate = {
+                ...itemDetails,
+                ingredient_id: ingredient_id,
+                list_id: list_id
+            }   
+            // console.log(itemToUpdate);
+            const updateItem = await serviceMethods.updateIngredient(itemToUpdate);
+            return updateItem;
+        } else {
+            const insertItem = await List.addIngredient(newIngredient);
+            return insertItem;
+        }  
+    } catch (err) {
+        return err;
+    }
+}
 
+serviceMethods.getIngredientById = async(ingredient) => {
+    try {
+        const { list_id, ingredient_id } = ingredient;
+        const getItem = await List.getIngredientById(list_id, ingredient_id);
+        return getItem;
+    } catch (err) {
+        return err;
+    }
+}
+
+serviceMethods.updateIngredient = async(item) => {
+    try {
+        const updateItem = await List.updateIngredient(item);
+        return updateItem;
+    } catch (err) {
+        return err;
+    }
+}
 
 module.exports = serviceMethods;

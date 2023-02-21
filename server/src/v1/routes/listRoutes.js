@@ -10,4 +10,6 @@ router.get("/", checkToken, listController.getListsByUser );
 
 router.get("/:list_id", listController.getListDetailsById);
 
+router.post("/:list_id", listController.addIngredient);
+
 module.exports = router;
