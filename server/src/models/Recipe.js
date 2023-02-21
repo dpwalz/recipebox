@@ -26,8 +26,6 @@ modelMethods.deleteRecipe = (recipe_id, user_id) => {
         `DELETE FROM RECIPES WHERE recipe_id = ? AND user_id = ?`,
         [recipe_id, user_id]
       );
-      const { affectedRows } = results;
-      console.log(affectedRows);
       return resolve(results);
     } catch (err) {
       return reject(err);

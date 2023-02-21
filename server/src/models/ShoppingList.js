@@ -85,9 +85,33 @@ modelMethods.getIngredientById = (list_id, ingredient_id) => {
     })
 }
 
-// modelMethods.deleteList = (list_id)
+modelMethods.deleteList = (list_id) => {
+    return new Promise( async(resolve, reject) => {
+        try {
+            const result = await connection.query(
+                `DELETE FROM SHOPPING_LIST WHERE list_id = ?`, 
+                [list_id]
+            );
+            return resolve(result);
+        } catch (err) {
+            return reject(err);        
+        }
+    }) 
+}
 
-// modelMethods.removeIngredient = ()
+modelMethods.removeIngredient = (list_id, ingredient) => {
+    return new Promise( async(resolve, reject) => {
+        try {
+            const result = await connection.query(
+                `DELETE FROM SHOPPING_LIST_DETAILS WHERE list_id = ? AND ingredient_id = ?`,
+                [list_id, ingredient]
+            );
+            return resolve(result);
+        } catch (err) {
+            return reject(err);
+        }
+    })
+}
 
 
 module.exports = modelMethods; 
