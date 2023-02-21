@@ -20,7 +20,7 @@ modelMethods.createList = (query) => {
     });
 }
 
-modelMethods.getListByUser = (query) => {
+modelMethods.getListsByUser = (query) => {
     return new Promise( async(resolve, reject) => {
         try {
             const { user_id } = query;

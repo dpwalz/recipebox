@@ -17,5 +17,19 @@ controllerMethods.createList = async(req, res) => {
     }
 }
 
+controllerMethods.getListsByUser = async(req, res) => {
+    try {
+        const userPackage = {
+            user_id: req.userId
+        };
+        const usersLists = await listService.getListsByUser(userPackage);
+        res.status(200).send({status: "OK", data: usersLists});
+    } catch (err) {
+        res.status(err?.status || 500).send({
+            status: "FAILED",
+            data: { error: err?.message || err }
+        })
+    }
+}
 
 module.exports = controllerMethods;

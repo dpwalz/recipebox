@@ -1,3 +1,4 @@
+const { query } = require("express");
 const { v4: uuid } = require("uuid");
 const List = require("../models/ShoppingList");
 
@@ -12,6 +13,15 @@ serviceMethods.createList = async(newList) => {
         };
         const createdList = await List.createList(listToInsert);
         return listId;
+    } catch (err) {
+        return err;
+    }
+}
+
+serviceMethods.getListsByUser = async(user) => {
+    try {
+        const usersLists = await List.getListsByUser(user);
+        return usersLists;
     } catch (err) {
         return err;
     }
