@@ -14,4 +14,6 @@ router.post("/:list_id", listController.addIngredient);
 
 router.delete("/:list_id", listController.removeIngredient);
 
+router.delete("/", listController.deleteList);
+
 module.exports = router;

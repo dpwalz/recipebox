@@ -91,4 +91,18 @@ controllerMethods.removeIngredient = async(req, res) => {
     }
 }
 
+controllerMethods.deleteList = async(req, res) => {
+    try {
+        const { body } = req;
+        const { list_id } = body;
+        const deleteItem = serviceMethods.deleteList(list_id);
+        res.status(200).send({status: "OK", data: deleteItem});
+     } catch (err) {
+        res.status(err?.status || 500).send({
+            status: "FAILED", 
+            data: {error: err?.message || err}
+        })
+    }
+}
+
 module.exports = controllerMethods;

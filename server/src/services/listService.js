@@ -96,4 +96,19 @@ serviceMethods.removeIngredient = async(item) => {
     }
 }
 
+serviceMethods.deleteList = async(list_id) => {
+    try {
+        const deleteItem = await List.deleteList(list_id);
+        if(deleteItem.affectedRows){
+            return deleteItem;
+        } else {
+            const error = new Error("List unavailable for delete action.");
+            error.status = 404;
+            throw error;
+        }
+    } catch (err) {
+        throw err;
+    }
+}
+
 module.exports = serviceMethods;
