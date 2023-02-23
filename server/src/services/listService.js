@@ -56,13 +56,11 @@ serviceMethods.addIngredient = async(newIngredient) => {
         let itemDetails;
         if(existingItem){
             itemDetails = await combineUnits(newIngredient, existingItem);
-            console.log(itemDetails)
             const itemToUpdate = {
                 ...itemDetails,
                 ingredient_id: ingredient_id,
                 list_id: list_id
             }   
-            // console.log(itemToUpdate);
             const updateItem = await serviceMethods.updateIngredient(itemToUpdate);
             return updateItem;
         } else {
@@ -70,7 +68,7 @@ serviceMethods.addIngredient = async(newIngredient) => {
             return insertItem;
         }  
     } catch (err) {
-        return err;
+        throw err;
     }
 }
 
@@ -89,7 +87,7 @@ serviceMethods.updateIngredient = async(item) => {
         const updateItem = await List.updateIngredient(item);
         return updateItem;
     } catch (err) {
-        return err;
+        throw err;
     }
 }
 
@@ -119,6 +117,24 @@ serviceMethods.deleteList = async(list_id) => {
             error.status = 404;
             throw error;
         }
+    } catch (err) {
+        throw err;
+    }
+}
+
+serviceMethods.addIngredients = async(list_id, items) => {
+    try {
+        let counter = 0;
+        for (let i = 0; i < items.length; i++) {
+            const itemToAdd = {
+                ...items[i],
+                list_id: list_id
+            }
+            const addItem = await serviceMethods.addIngredient(itemToAdd);
+            counter++;
+        }
+        
+        return `${counter} items added to list`;
     } catch (err) {
         throw err;
     }

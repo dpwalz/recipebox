@@ -34,4 +34,18 @@ modelMethods.deleteRecipe = (recipeToDelete) => {
   })
 }
 
+modelMethods.getRecipeIngredients = (recipe_id) => {
+  return new Promise( async(resolve, reject) => {
+    try {
+      const results = await connection.query(
+        `SELECT * FROM RECIPE_INGREDIENTS WHERE recipe_id = ?`, 
+        [recipe_id]
+      );
+      return resolve(results);
+    } catch (err) {
+      return reject(err);
+    }
+  })
+}
+
 module.exports = modelMethods;

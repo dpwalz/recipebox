@@ -28,4 +28,19 @@ serviceMethods.deleteRecipe = async( recipeToDelete ) => {
     }   
 }
 
+serviceMethods.getRecipeIngredients = async( recipe_id ) => {
+    try {
+        const getRecipe = await Recipe.getRecipeIngredients(recipe_id);
+        if(getRecipe.length){
+            return getRecipe;
+        } else {
+            const error = new Error("Could not find ingredients for this recipe");
+            error.status = 404;
+            throw error;
+        }
+    } catch (err) {
+        throw err;
+    }
+}
+
 module.exports = serviceMethods;

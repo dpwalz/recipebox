@@ -1,5 +1,5 @@
-const serviceMethods = require("../services/listService");
 const listService = require("../services/listService");
+const { getRecipeIngredients } = require("../services/recipeService");
 
 const controllerMethods = {};
 
@@ -82,7 +82,7 @@ controllerMethods.removeIngredient = async(req, res) => {
             list_id: list_id,
             ingredient_id: body.ingredient_id
         }
-        const removeItem = serviceMethods.removeIngredient(itemToRemove);
+        const removeItem = listService.removeIngredient(itemToRemove);
         res.status(200).send({status: "OK", data: removeItem});
     } catch (err) {
         res.status(err?.status || 500).send({
@@ -96,13 +96,27 @@ controllerMethods.deleteList = async(req, res) => {
     try {
         const { body } = req;
         const { list_id } = body;
-        const deleteItem = serviceMethods.deleteList(list_id);
+        const deleteItem = listService.deleteList(list_id);
         res.status(200).send({status: "OK", data: deleteItem});
      } catch (err) {
         res.status(err?.status || 500).send({
             status: "FAILED", 
             data: {error: err?.message || err}
         })
+    }
+}
+
+controllerMethods.addRecipe = async(req, res) => {
+    try {
+        const { recipe_id, list_id } = req.params;
+        const recipeIngredients = await getRecipeIngredients(recipe_id);
+        const addItemsToList = await listService.addIngredients(list_id, recipeIngredients);
+        res.status(200).send({status: "OK", data: addItemsToList});
+    } catch (err) {
+        res.status(err?.status || 500).send({
+            statis: "FAILED",
+            data: {error: err?.message || err}
+        });
     }
 }
 

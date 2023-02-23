@@ -72,16 +72,16 @@ VALUES
 
 DROP TABLE IF EXISTS RECIPE_INGREDIENTS;
 CREATE TABLE RECIPE_INGREDIENTS(
-	recipe 					varchar(255) DEFAULT(uuid()) not null,
-	ingredient 				varchar(255) DEFAULT(uuid()) not null,
+	recipe_id 					varchar(255) DEFAULT(uuid()) not null,
+	ingredient_id 				varchar(255) DEFAULT(uuid()) not null,
 	quantity				decimal(13, 2),
 	unit 					varchar(255),
-	primary key (recipe, ingredient),
-	foreign key (recipe) references RECIPES(recipe_id) ON DELETE CASCADE,
-	foreign key (ingredient) references INGREDIENTS(ingredient_id)
+	primary key (recipe_id, ingredient_id),
+	foreign key (recipe_id) references RECIPES(recipe_id) ON DELETE CASCADE,
+	foreign key (ingredient_id) references INGREDIENTS(ingredient_id)
 );
 
-INSERT INTO RECIPE_INGREDIENTS (recipe, ingredient, quantity, unit)
+INSERT INTO RECIPE_INGREDIENTS (recipe_id, ingredient_id, quantity, unit)
 VALUES
 ('R_001','I_017','4','tbsp'),
 ('R_001','I_002','1', 'medium'),
@@ -138,7 +138,7 @@ CREATE TABLE SHOPPING_LIST_DETAILS(
 	foreign key (ingredient_id) references INGREDIENTS(ingredient_id)
 );
 
-SELECT * FROM SHOPPING_LIST;
+SELECT * FROM SHOPPING_LIST_DETAILS;
 
 
 
