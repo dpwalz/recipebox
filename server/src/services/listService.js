@@ -21,18 +21,31 @@ serviceMethods.createList = async(newList) => {
 serviceMethods.getListsByUser = async(user) => {
     try {
         const usersLists = await List.getListsByUser(user);
-        return usersLists;
+        if(usersLists.length){
+            return usersLists;
+        } else {
+            const error = new Error("User currently has no lists");
+            error.status = 404;
+            throw error;
+        }
     } catch (err) {
-        return err;
+        throw err;
     }
 }
 
 serviceMethods.getListDetailsById = async(list) => {
     try {
         const listDetails = await List.getListDetailsById(list);
-        return listDetails;
+        if(listDetails.length){
+            return listDetails;
+        } else {
+            const error = new Error("List does not exist or is empty");
+            error.status = 404;
+            throw error;
+        }
+        
     } catch (err) {
-        return err;
+        throw err;
     }
 }
 

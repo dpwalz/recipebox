@@ -43,6 +43,7 @@ controllerMethods.getListDetailsById = async(req, res) => {
         });
     } catch (err) {
         res.status(err?.status || 500).send({
+            status: "FAILED",
             data: { error: err?.message || err }
         });
     }
