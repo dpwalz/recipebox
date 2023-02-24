@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
+import { LoginModule } from './modules/login/login.module';
+import { RegisterModule } from './modules/register/register.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { HomeModule } from './modules/home/home.module';
     BrowserAnimationsModule,
     RouterModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    LoginModule,
+    RegisterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

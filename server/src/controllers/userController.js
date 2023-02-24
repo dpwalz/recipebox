@@ -5,6 +5,7 @@ const controllerMethods = {};
 
 controllerMethods.createUser = async (req, res) => {
     try {
+
         const { body } = req;
         if(
             !body.first_name ||
@@ -17,6 +18,7 @@ controllerMethods.createUser = async (req, res) => {
             throw error;
         } 
         const createdUser = await userService.createUser(body);
+        createdUser.password = null;
         res.status(201).send({status: "OK", data: createdUser});
     } catch (err) {
         res.status(err?.status || 500).send({
