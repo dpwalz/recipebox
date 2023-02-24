@@ -13,7 +13,6 @@ import { Router } from "@angular/router";
 export class RegisterComponent implements OnInit{
 
     formGroup: FormGroup | undefined;
-    formSubscription: Subscription | undefined;
     user: RegisterUser | undefined;
 
     constructor(
@@ -34,9 +33,8 @@ export class RegisterComponent implements OnInit{
     }
 
     onSubmit(request: RegisterUser): void {
-        console.log(request);
         this.registerService.registerUser(request)
-            .subscribe((test) => {
+            .subscribe(() => {
                 console.log("User is Registered!");
                 this.router.navigate(['/login']);
             });      

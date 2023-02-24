@@ -6,6 +6,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { RegisterRoutingModule } from "./register-routing.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { CommonModule } from "@angular/common";
         RegisterRoutingModule,
         ReactiveFormsModule,
         CommonModule,
+        RouterModule
     ],
     exports: [],
     declarations: [

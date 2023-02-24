@@ -4,6 +4,10 @@ import { LoginRoutingModule } from "./login-routing.module";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { InputTextModule } from "primeng/inputtext";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { ReactiveFormsModule } from "@angular/forms";
+
 
 @NgModule({
     imports: [
@@ -11,6 +15,9 @@ import { InputTextModule } from "primeng/inputtext";
         ButtonModule,
         RippleModule,
         InputTextModule,
+        ReactiveFormsModule,
+        RouterModule, 
+        CommonModule,
     ],
     exports: [],
     declarations: [
