@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { MenuComponent } from "./menu/menu.component";
 import {MenubarModule} from 'primeng/menubar';
+import { ButtonModule } from "primeng/button";
+
 
 const components = [
     MenuComponent
@@ -9,7 +11,8 @@ const components = [
 
 @NgModule({
     imports: [
-        MenubarModule
+        MenubarModule,
+        ButtonModule
     ],
     exports: [...components],
     declarations: [

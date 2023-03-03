@@ -8,7 +8,7 @@ import { HomeModule } from './modules/home/home.module';
 import { LoginModule } from './modules/login/login.module';
 import { RegisterModule } from './modules/register/register.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ ConfirmationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
