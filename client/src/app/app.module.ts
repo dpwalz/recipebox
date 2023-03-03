@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
 import { LoginModule } from './modules/login/login.module';
 import { RegisterModule } from './modules/register/register.module';
-import { HttpClientModule } from '@angular/common/http';
-import { ConfirmationService } from 'primeng/api';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { HttpInterceptorService } from './services/http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,15 @@ import { ConfirmationService } from 'primeng/api';
     RegisterModule,
     HttpClientModule
   ],
-  providers: [ ConfirmationService ],
+  providers: [ 
+    ConfirmationService,
+    MessageService,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: HttpInterceptorService, 
+        multi: true 
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

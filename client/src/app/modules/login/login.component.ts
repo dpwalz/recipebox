@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { User, Login } from "src/app/models/login.interface";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -12,13 +13,14 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class LoginComponent implements OnInit {
     
-    formGroup: FormGroup | undefined;
-    user: Login | undefined;
+    formGroup!: FormGroup;
+    user!: Login;
 
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
-        private authService: AuthService
+        private authService: AuthService,
+        private messageService: MessageService
     ) {
 
     }
@@ -34,8 +36,13 @@ export class LoginComponent implements OnInit {
         console.log(request);
         this.authService.login(request)
             .subscribe({next: () => console.log("log in succeed"),
-                        error: (e) => console.error(e.error.data),
-                        complete: () => this.router.navigate(['/profile'])})
+                        error: (e) => {
+                            this.messageService.add({severity:"error",
+                            summary: "Login Failed",
+                            detail: e.error
+                        });
+                        },
+                        complete: () => this.router.navigate(['/profile'])});
     }
     
 }

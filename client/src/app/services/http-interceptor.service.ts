@@ -1,53 +1,35 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
-    HttpEvent,
-    HttpHeaders,
-    HttpInterceptor,
-    HttpResponse,
-    HttpErrorResponse,
-    HttpHandler,
-    HttpRequest
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-
-
-
 import { Observable } from 'rxjs';
+import { throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { MessageService } from 'primeng/api';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
+export class HttpInterceptorService implements HttpInterceptor {
 
-    constructor(
-        private appService: AppService) {
+  constructor(
+    private messageService: MessageService
+  ) {}
 
-    }
-
-    /**
-     * 
-     * @param req - parameter to handle http request
-     * @param next - parameter for http handler
-     */
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const started = Date.now();
-        /**
-         * Handle newly created request with updated header (if given)
-         */
-        return next.handle(req).do((event: HttpEvent<any>) => {
-            /**
-             * Sucessfull Http Response Time.
-             */
-            if (event instanceof HttpResponse) {
-                const elapsed = Date.now() - started;
-            }
-
-        }, (err: any) => {
-            /**
-             * redirect to the error_handler route according to error status or error_code
-             * or show a modal
-             */
-            if (err instanceof HttpErrorResponse) {
-                console.log(err);
-            }
-        });
-    }
-
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    
+    return next.handle(request).pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status !== 401) {
+            // console.log(error.error.data.error);
+            // this.messageService.add( {severity: "error",
+            // summary: "GeeksforGeeks",
+            // detail: "Success Service Message"});
+          }
+          return throwError(() => error.error.data);
+        })
+    )
+  }
 }

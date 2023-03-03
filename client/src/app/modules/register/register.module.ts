@@ -7,6 +7,7 @@ import { RegisterRoutingModule } from "./register-routing.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { ToastModule } from "primeng/toast";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RouterModule } from "@angular/router";
         RegisterRoutingModule,
         ReactiveFormsModule,
         CommonModule,
-        RouterModule
+        RouterModule,
+        ToastModule,
     ],
     exports: [],
     declarations: [

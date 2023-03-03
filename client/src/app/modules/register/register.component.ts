@@ -4,21 +4,23 @@ import { Subscription } from "rxjs";
 import { RegisterService } from "../../services/register.service";
 import { RegisterUser } from "src/app/models/register.interface";
 import { Router } from "@angular/router";
+import { MessageService } from "primeng/api";
 
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css']
+    styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit{
 
-    formGroup: FormGroup | undefined;
-    user: RegisterUser | undefined;
+    formGroup!: FormGroup;
+    user!: RegisterUser;
 
     constructor(
         private formBuilder: FormBuilder,
         private registerService: RegisterService,
-        private router: Router
+        private router: Router,
+        private messageService: MessageService
     ) {
 
     }
@@ -33,11 +35,16 @@ export class RegisterComponent implements OnInit{
     }
 
     onSubmit(request: RegisterUser): void {
-        this.registerService.registerUser(request)
-            .subscribe(() => {
-                console.log("User is Registered!");
-                this.router.navigate(['/login']);
-            });      
+        this.registerService.registerUser(request) 
+            .subscribe({next: () => console.log("User Registered successfully")
+                        ,
+                        error: (e) => {
+                            this.messageService.add({severity:"error",
+                            summary: "Registration Failed",
+                            detail: e.error
+                        });
+                        },
+                        complete: () => this.router.navigate(['/login'])});
     }
 
 }

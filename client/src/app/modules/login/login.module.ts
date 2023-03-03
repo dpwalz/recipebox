@@ -7,6 +7,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ToastModule } from "primeng/toast";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from "@angular/forms";
         ReactiveFormsModule,
         RouterModule, 
         CommonModule,
+        ToastModule
     ],
     exports: [],
     declarations: [
