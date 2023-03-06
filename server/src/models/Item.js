@@ -35,4 +35,19 @@ modelMethods.addNewItem = ( body ) => {
     });
 }
 
+modelMethods.getItemName = ( id ) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const item_name = await connection.query(
+                `SELECT ingredient_name FROM INGREDIENTS WHERE ingredient_id = ?`,
+                [id]
+            );
+            return resolve(item_name[0]);
+        } catch (err) {
+            return reject(err);
+        }
+    })
+    
+}
+
 module.exports = modelMethods;

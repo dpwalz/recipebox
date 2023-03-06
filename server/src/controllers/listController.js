@@ -1,5 +1,6 @@
 const listService = require("../services/listService");
 const { getRecipeIngredients } = require("../services/recipeService");
+const { getItemName } = require("../services/itemService");
 
 const controllerMethods = {};
 
@@ -24,6 +25,14 @@ controllerMethods.getListsByUser = async(req, res) => {
             user_id: req.userId
         };
         const usersLists = await listService.getListsByUser(userPackage);
+        for (const element of usersLists) {
+            let list_details = await listService.getListDetailsById(element.list_id);
+            for (const item of list_details) {
+                const { ingredient_name } = await getItemName(item.ingredient_id);
+                item.ingredient_name = ingredient_name;
+            }    
+            element.items = list_details;
+        }
         res.status(200).send({status: "OK", data: usersLists});
     } catch (err) {
         res.status(err?.status || 500).send({

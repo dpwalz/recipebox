@@ -23,4 +23,15 @@ serviceMethods.addNewItem = async (newItem) => {
     }
 }
 
+serviceMethods.getItemName = async (item_id) => {
+    try {
+        const item_name = await Item.getItemName(item_id);
+        return item_name;
+    } catch (err) {
+        throw err;
+    }
+    
+
+}
+
 module.exports = serviceMethods;
