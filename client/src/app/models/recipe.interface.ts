@@ -1,4 +1,10 @@
+export interface RecipeResponse {
+    status: string;
+    data: Recipe[];
+}
+
 export interface Recipe {
-    name?:string;
-    description?:string;
+    recipe_id?: string;
+    recipe_name?: string;
+    recipe_description?: string;
 }

@@ -6,6 +6,7 @@ import { SharedModule } from "../shared/shared.module";
 import {TableModule} from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { CommonModule } from "@angular/common";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
         SharedModule,
         TableModule,
         CardModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        CommonModule
     ],
     exports: [],
     declarations: [

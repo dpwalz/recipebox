@@ -25,10 +25,12 @@ export class AuthService {
 
     private saveToken(user: User): void {
         localStorage.setItem('id_token', user.jsontoken);
+        localStorage.setItem('rb_user_id', user.id);
     }
 
     logout() {
         localStorage.removeItem("id_token");
+        localStorage.removeItem("rb_user_id");
         this.router.navigate([''])
     }
 

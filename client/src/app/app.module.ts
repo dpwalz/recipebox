@@ -10,6 +10,7 @@ import { RegisterModule } from './modules/register/register.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
   providers: [ 
     ConfirmationService,
     MessageService,
+    DatePipe,
     {
         provide: HTTP_INTERCEPTORS,
         useClass: HttpInterceptorService, 

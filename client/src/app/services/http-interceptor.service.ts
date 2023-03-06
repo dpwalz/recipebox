@@ -4,7 +4,8 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { throwError } from "rxjs";
@@ -18,9 +19,14 @@ export class HttpInterceptorService implements HttpInterceptor {
     private messageService: MessageService
   ) {}
 
+  
+
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     
-    return next.handle(request).pipe(
+    const authToken = `Bearer ${localStorage.getItem('id_token')}`;
+    const authReq = request.clone({ setHeaders: { Authorization: authToken } });
+
+    return next.handle(authReq).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status !== 401) {
             // console.log(error.error.data.error);
