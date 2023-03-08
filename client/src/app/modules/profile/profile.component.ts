@@ -13,25 +13,7 @@ export class ProfileComponent implements OnInit {
     
     recipes: Recipe[] = [];
     selectedRecipe!: Recipe;
-    shopping_lists: ShoppingLists[] = [
-        {
-            list_id: 'L_0001',
-            creation_date: new Date(),
-            items: [{
-                ingredient_id: 'I_001',
-                ingredient_name: 'Carrot',
-                quantity: 3,
-                unit: 'bulk'
-            },
-            {
-                ingredient_id: 'I_002',
-                ingredient_name: 'Broccoli',
-                quantity: 3,
-                unit: 'tsp'
-            }]
-        
-        }
-    ];
+    shopping_lists: ShoppingLists[] = [];
 
     constructor( 
         private confirmationService: ConfirmationService,

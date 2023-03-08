@@ -36,14 +36,14 @@ serviceMethods.getListsByUser = async(user) => {
 serviceMethods.getListDetailsById = async(list) => {
     try {
         const listDetails = await List.getListDetailsById(list);
-        if(listDetails.length){
-            return listDetails;
-        } else {
-            const error = new Error("List does not exist or is empty");
-            error.status = 404;
-            throw error;
-        }
-        
+        // if(listDetails.length){
+        //     return listDetails;
+        // } else {
+        //     const error = new Error("List does not exist or is empty");
+        //     error.status = 404;
+        //     throw error;
+        // }
+        return listDetails;
     } catch (err) {
         throw err;
     }

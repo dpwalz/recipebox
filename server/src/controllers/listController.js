@@ -24,9 +24,11 @@ controllerMethods.getListsByUser = async(req, res) => {
         const userPackage = {
             user_id: req.userId
         };
+        
         const usersLists = await listService.getListsByUser(userPackage);
         for (const element of usersLists) {
             let list_details = await listService.getListDetailsById(element.list_id);
+            console.log(JSON.stringify(list_details));
             for (const item of list_details) {
                 const { ingredient_name } = await getItemName(item.ingredient_id);
                 item.ingredient_name = ingredient_name;

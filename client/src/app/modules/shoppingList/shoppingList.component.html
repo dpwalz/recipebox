@@ -1,0 +1,57 @@
+<p-card>
+    <ng-template pTemplate="header">
+        <h2>Your Shopping Lists</h2>
+    </ng-template>
+    <p *ngIf="" >Expand to see list contents</p>
+    <p-table [value]="shopping_lists" dataKey="list_id" [tableStyle]="{'min-width': '60rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 5rem"></th>
+                <th pSortableColumn="name">Date Created <p-sortIcon field="creation_date"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-shopping_list let-expanded="expanded">
+            <tr>
+                <td>
+                    <button type="button" pButton pRipple [pRowToggler]="shopping_list" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                </td>
+                <td>{{ shopping_list.creation_date | displayDate }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-shopping_list>
+            <tr>
+                <td colspan="7">
+                    <div class="p-3">
+                        <p-table [value]="shopping_list.items" dataKey="ingredient_id">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th pSortableColumn="ingredient_name">Ingredient <p-sortIcon field="ingredient_name"></p-sortIcon></th>
+                                    <th pSortableColumn="quantity">Amount <p-sortIcon field="quantity"></p-sortIcon></th>
+                                    <th pSortableColumn="unit">Unit <p-sortIcon field="unit"></p-sortIcon></th>
+                                    <th style="width: 4rem"></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-item>
+                                <tr>
+                                    <td>{{item.ingredient_name}}</td>
+                                    <td>{{item.quantity}}</td>
+                                    <td>{{item.unit}}</td>
+                                    <td><p-button type="button" icon="pi pi-search"></p-button></td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td colspan="6">There are no items for this list yet.</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+
+
+
+

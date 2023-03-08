@@ -6,7 +6,7 @@ import { DisplayDate } from "./pipes/displaydate.pipe";
 
 
 const components = [
-    MenuComponent
+    MenuComponent,
 ];
 
 const pipes = [
@@ -18,7 +18,7 @@ const pipes = [
 @NgModule({
     imports: [
         MenubarModule,
-        ButtonModule
+        ButtonModule,
     ],
     exports: [
         ...components,

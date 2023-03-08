@@ -7,17 +7,19 @@ import {TableModule} from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { CommonModule } from "@angular/common";
+import { ShoppingListModule } from "../shoppingList/shoppingList.module";
 
 
 @NgModule({
     imports: [
-        ProfileRoutingModule,
-        PanelModule,
-        SharedModule,
-        TableModule,
         CardModule,
+        CommonModule,
         ConfirmDialogModule,
-        CommonModule
+        PanelModule,
+        ProfileRoutingModule,
+        SharedModule,
+        ShoppingListModule,
+        TableModule,
     ],
     exports: [],
     declarations: [
