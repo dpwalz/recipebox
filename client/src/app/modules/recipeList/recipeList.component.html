@@ -1,0 +1,25 @@
+<p-confirmDialog></p-confirmDialog>
+<p-card>
+    <ng-template pTemplate="header">
+        <h2>Recipes</h2>
+    </ng-template>
+    <p *ngIf="recipes.length" >Click on the rows to add a recipe to your shopping list</p>
+    <p-table *ngIf="recipes.length; else noRecipes" [value]="recipes" selectionMode="single" [(selection)]="selectedRecipe" dataKey="recipe_id"
+        (onRowSelect)="onRowSelect($event)" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>   
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-recipe>
+            <tr [pSelectableRow]="recipe">
+                <td>{{recipe.recipe_name}}</td>
+                <td>{{recipe.recipe_description}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <ng-template #noRecipes>
+        <p>You have no recipes.</p>
+    </ng-template>
+</p-card>

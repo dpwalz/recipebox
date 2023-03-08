@@ -14,7 +14,6 @@ const pipes = [
 ]
 
 
-
 @NgModule({
     imports: [
         MenubarModule,
