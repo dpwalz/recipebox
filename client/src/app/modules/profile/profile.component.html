@@ -1,3 +1,11 @@
 <app-menu></app-menu>
-<app-recipe-list [recipes] = "recipes" ></app-recipe-list>
-<app-shopping-list [shopping_lists] = "shopping_lists" ></app-shopping-list>
+<app-recipe-list 
+    [selectedList]="selectedList" 
+    [recipes] = "recipes" 
+    (updateShoppingList)="updateShoppingList($event)"
+></app-recipe-list>
+<app-shopping-list 
+    [shopping_lists]="shopping_lists"     
+    (updateSelectedList)="updateSelectedList($event)" 
+    (updateShoppingList)="updateShoppingList($event)" 
+></app-shopping-list>

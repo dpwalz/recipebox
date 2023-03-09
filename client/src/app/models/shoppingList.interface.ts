@@ -3,6 +3,11 @@ export interface ListResponse {
     data: ShoppingLists[];
 }
 
+export interface ListCreationResponse {
+    status: string;
+    data: string;
+}
+
 export interface ShoppingLists {
     list_id: string;
     creation_date: Date;

@@ -1,9 +1,10 @@
 <p-card>
     <ng-template pTemplate="header">
         <h2>Your Shopping Lists</h2>
+        <button pButton label="Create New List" icon="pi pi-file-edit" (click)="onClick()"></button>
     </ng-template>
     <p *ngIf="" >Expand to see list contents</p>
-    <p-table [value]="shopping_lists" dataKey="list_id" [tableStyle]="{'min-width': '60rem'}">
+    <p-table [value]="shopping_lists" selectionMode="single" (onRowSelect)="selectList($event.data)" [(selection)]="selectedList" dataKey="list_id" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 5rem"></th>
@@ -11,7 +12,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-shopping_list let-expanded="expanded">
-            <tr>
+            <tr [pSelectableRow]="shopping_list">
                 <td>
                     <button type="button" pButton pRipple [pRowToggler]="shopping_list" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                 </td>

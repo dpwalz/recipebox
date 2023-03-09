@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
     
     recipes: Recipe[] = [];
     shopping_lists: ShoppingLists[] = [];
+    selectedList!: ShoppingLists;
 
     constructor( 
         private recipeService: RecipeService,
@@ -39,11 +40,28 @@ export class ProfileComponent implements OnInit {
                         error: (e) => {
                             console.log(e);
                         },
-        });
-        
+        });    
     }
 
-    
+    updateShoppingList(test: String): void{
+        this.listService.getUserShoppingList()
+            .subscribe({next: (items) => {
+                            console.log(test);
+                            let new_lists: ShoppingLists[] = [];
+                            items.data.forEach(element => {
+                                new_lists.push(element);
+                            })
+                            this.shopping_lists = new_lists;
+                        },
+                        error: (e) => {
+                            console.log(e);
+                        }       
+            });
+    }
+
+    updateSelectedList(event: ShoppingLists): void {
+        this.selectedList = event;
+    }
 
     
     

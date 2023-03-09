@@ -4,13 +4,15 @@ import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { RecipeListComponent } from "./recipeList.component";
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ToastModule } from "primeng/toast";
 
 @NgModule({
     imports: [
         CardModule,
         CommonModule,
         ConfirmDialogModule,
-        TableModule
+        TableModule,
+        ToastModule
     ],
     exports: [RecipeListComponent],
     declarations: [RecipeListComponent]

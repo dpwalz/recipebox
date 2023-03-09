@@ -3,6 +3,9 @@ import { environment } from "src/assets/environments/environment";
 import { RecipeResponse } from "../models/recipe.interface";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { DefaultResponse } from "../models/default.interface";
+import { ShoppingLists } from "../models/shoppingList.interface";
+import { Recipe } from "../models/recipe.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +19,10 @@ export class RecipeService {
 
     getUserRecipes(): Observable<RecipeResponse> {
         return this.http.get<RecipeResponse>(`${this.apiUrl}/users/${localStorage.getItem('rb_user_id')}/recipes`)
+    }
+
+    addRecipeToList(list: ShoppingLists, recipe: Recipe): Observable<DefaultResponse> {
+        return this.http.post<DefaultResponse>(`${this.apiUrl}/lists/${list.list_id}/recipe/${recipe.recipe_id}`, {});
     }
 
 }
