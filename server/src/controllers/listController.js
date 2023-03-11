@@ -28,7 +28,6 @@ controllerMethods.getListsByUser = async(req, res) => {
         const usersLists = await listService.getListsByUser(userPackage);
         for (const element of usersLists) {
             let list_details = await listService.getListDetailsById(element.list_id);
-            console.log(JSON.stringify(list_details));
             for (const item of list_details) {
                 const { ingredient_name } = await getItemName(item.ingredient_id);
                 item.ingredient_name = ingredient_name;
@@ -87,11 +86,10 @@ controllerMethods.addIngredient = async(req, res) => {
 
 controllerMethods.removeIngredient = async(req, res) => {
     try {
-        const { list_id } = req.params;
-        const { body } = req;
+        const { list_id, ingredient_id } = req.params;
         const itemToRemove = {
             list_id: list_id,
-            ingredient_id: body.ingredient_id
+            ingredient_id: ingredient_id
         }
         const removeItem = listService.removeIngredient(itemToRemove);
         res.status(200).send({status: "OK", data: removeItem});

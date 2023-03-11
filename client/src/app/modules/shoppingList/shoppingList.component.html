@@ -1,7 +1,17 @@
+<p-dialog *ngIf="selectedItem" [(visible)]="display" [style]="{width: '50vw'}">
+    Select Action to complete on Item: {{selectedItem.ingredient_name}}
+    <ng-template pTemplate="footer">
+        <span class="p-buttonset">
+            <button class="p-button-sm"  pButton type="button" icon="pi pi-trash" label="Remove" (click)="removeItem()"></button>
+            <button class="p-button-sm" pButton type="button" icon="pi pi-pencil" label="Edit" (click)="editItem()"></button>
+        </span>
+    </ng-template>
+</p-dialog>
+<p-toast position="center"></p-toast> 
 <p-card>
     <ng-template pTemplate="header">
         <h2>Your Shopping Lists</h2>
-        <button pButton label="Create New List" icon="pi pi-file-edit" (click)="onClick()"></button>
+        <button pButton label="Create New List" icon="pi pi-plus" (click)="onClick()"></button>
     </ng-template>
     <p *ngIf="" >Expand to see list contents</p>
     <p-table [value]="shopping_lists" selectionMode="single" (onRowSelect)="selectList($event.data)" [(selection)]="selectedList" dataKey="list_id" [tableStyle]="{'min-width': '60rem'}">
@@ -37,7 +47,7 @@
                                     <td>{{item.ingredient_name}}</td>
                                     <td>{{item.quantity}}</td>
                                     <td>{{item.unit}}</td>
-                                    <td><p-button type="button" icon="pi pi-search"></p-button></td>
+                                    <td><p-button type="button" (click)="itemClick(item)" icon="pi pi-file-edit"></p-button></td>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="emptymessage">
@@ -52,7 +62,3 @@
         </ng-template>
     </p-table>
 </p-card>
-
-
-
-

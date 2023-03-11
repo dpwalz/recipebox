@@ -2,7 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, switchMap } from "rxjs";
 import { environment } from "src/assets/environments/environment";
-import { ListCreationResponse, ListResponse } from "../models/shoppingList.interface";
+import { DefaultResponse } from "../models/default.interface";
+import { ListCreationResponse, ListResponse, ShoppingList } from "../models/shoppingList.interface";
 
 
 
@@ -22,6 +23,10 @@ export class ShoppingListService {
 
     createNewList(): Observable<ListCreationResponse> {
         return this.http.post<ListCreationResponse>(`${this.apiUrl}/lists/`, {});
+    }
+
+    deleteItemFromList(item: ShoppingList): Observable<DefaultResponse> {
+        return this.http.delete<DefaultResponse>(`${this.apiUrl}/lists/${item.list_id}/ingredient/${item.ingredient_id}`);
     }
 
 }

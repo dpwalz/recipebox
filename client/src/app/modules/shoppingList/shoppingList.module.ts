@@ -8,17 +8,21 @@ import { SharedModule } from "../shared/shared.module";
 import { ShoppingListComponent } from "./shoppingList.component";
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import {DialogModule} from 'primeng/dialog';
+import { ToastModule } from "primeng/toast";
 
 @NgModule({
     imports: [
         ButtonModule,
         CardModule,
         CommonModule,
+        DialogModule,
         DropdownModule,
         FormsModule,
         RippleModule,
         SharedModule,
         TableModule,
+        ToastModule
     ],
     exports: [
         ShoppingListComponent
