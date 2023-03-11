@@ -11,6 +11,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import {DialogModule} from 'primeng/dialog';
 import { ToastModule } from "primeng/toast";
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { ItemListModule } from "../itemsList/itemList.module";
+
 
 @NgModule({
     imports: [
@@ -21,6 +24,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
         DialogModule,
         DropdownModule,
         FormsModule,
+        ItemListModule,
+        OverlayPanelModule,
         RippleModule,
         SharedModule,
         TableModule,

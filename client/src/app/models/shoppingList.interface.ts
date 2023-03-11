@@ -14,11 +14,15 @@ export interface ShoppingLists {
     items: ShoppingList[];
 }
 
+export interface ItemResponse {
+    status: string;
+    data: ShoppingList[];
+}
 
 export interface ShoppingList {
     ingredient_id: string;
     list_id?: string;
     ingredient_name: string;
-    quantity: number;
-    unit: string;
+    quantity?: number;
+    unit?: string;
 }

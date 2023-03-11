@@ -7,8 +7,13 @@
         </span>
     </ng-template>
 </p-dialog>
+
+<p-dialog [(visible)]="displayPanel">
+    <app-item-list></app-item-list>
+</p-dialog>
+
 <p-toast position="center"></p-toast> 
-<p-card>
+<p-card >
     <ng-template pTemplate="header">
         <h2>Your Shopping Lists</h2>
         <button pButton label="Create New List" icon="pi pi-plus" (click)="onClick()"></button>
@@ -19,6 +24,7 @@
             <tr>
                 <th style="width: 5rem"></th>
                 <th pSortableColumn="name">Date Created <p-sortIcon field="creation_date"></p-sortIcon></th>
+                <th style="width: 15rem"></th>
                 <th style="width: 5rem"></th>
             </tr>
         </ng-template>
@@ -28,6 +34,9 @@
                     <button type="button" pButton pRipple [pRowToggler]="shopping_list" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                 </td>
                 <td>{{ shopping_list.creation_date | displayDate }}</td>
+                <td>
+                    <p-button #elm type="text" icon="pi pi-plus" label="Add New Items" (click)="togglePanel(shopping_list)"></p-button>
+                </td>
                 <td>
                     <p-button type="button" (click)="deleteList(shopping_list)" icon="pi pi-trash"></p-button>
                 </td>
@@ -66,3 +75,5 @@
         </ng-template>
     </p-table>
 </p-card>
+
+

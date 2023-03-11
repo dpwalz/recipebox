@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { ShoppingList, ShoppingLists } from "src/app/models/shoppingList.interface";
 import { ShoppingListService } from "src/app/services/shoppingList.service";
@@ -10,14 +10,15 @@ import { DatePipe } from "@angular/common";
     templateUrl: './shoppingList.component.html'
 })
 
-export class ShoppingListComponent implements OnChanges {
+export class ShoppingListComponent implements OnChanges{
 
     @Input() shopping_lists: ShoppingLists[] = [];
     @Output() updateShoppingList = new EventEmitter<String>();
     @Output() updateSelectedList = new EventEmitter<ShoppingLists>();
-    selectedList!: ShoppingList;
+    selectedList!: ShoppingLists;
     display: boolean = false;
     selectedItem!: ShoppingList;
+    displayPanel: boolean = false;
 
     constructor(
         private listService: ShoppingListService,
@@ -74,4 +75,9 @@ export class ShoppingListComponent implements OnChanges {
         })
     }
 
+    togglePanel(list: ShoppingLists) {
+        this.selectedList = list;
+        this.displayPanel = true;
+    }
 }
+

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, switchMap } from "rxjs";
+import { Observable } from "rxjs";
 import { environment } from "src/assets/environments/environment";
 import { DefaultResponse } from "../models/default.interface";
 import { ListCreationResponse, ListResponse, ShoppingList, ShoppingLists } from "../models/shoppingList.interface";
