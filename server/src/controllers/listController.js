@@ -103,8 +103,7 @@ controllerMethods.removeIngredient = async(req, res) => {
 
 controllerMethods.deleteList = async(req, res) => {
     try {
-        const { body } = req;
-        const { list_id } = body;
+        const { list_id } = req.params;
         const deleteItem = listService.deleteList(list_id);
         res.status(200).send({status: "OK", data: deleteItem});
      } catch (err) {

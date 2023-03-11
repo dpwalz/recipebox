@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { ConfirmationService } from "primeng/api";
 import { ShoppingList, ShoppingLists } from "src/app/models/shoppingList.interface";
 import { ShoppingListService } from "src/app/services/shoppingList.service";
+import { DatePipe } from "@angular/common";
 
 
 @Component({
@@ -20,7 +21,8 @@ export class ShoppingListComponent implements OnChanges {
 
     constructor(
         private listService: ShoppingListService,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private datepipe: DatePipe
     ){}
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -56,6 +58,20 @@ export class ShoppingListComponent implements OnChanges {
 
     editItem(){
         console.log(this.selectedItem.ingredient_id);
+    }
+
+    deleteList(list: ShoppingLists){
+        this.confirmationService.confirm({
+            message: `Delete List: ${this.datepipe.transform(list.creation_date, 'short')}`,
+            accept: () => {
+                this.listService.deleteShoppingList(list)
+                    .subscribe({
+                        next: () => this.updateShoppingList.emit(''),
+                        error: (e) => console.log(e)   
+                })  
+
+            }
+        })
     }
 
 }

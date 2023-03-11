@@ -19,6 +19,7 @@
             <tr>
                 <th style="width: 5rem"></th>
                 <th pSortableColumn="name">Date Created <p-sortIcon field="creation_date"></p-sortIcon></th>
+                <th style="width: 5rem"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-shopping_list let-expanded="expanded">
@@ -27,6 +28,9 @@
                     <button type="button" pButton pRipple [pRowToggler]="shopping_list" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                 </td>
                 <td>{{ shopping_list.creation_date | displayDate }}</td>
+                <td>
+                    <p-button type="button" (click)="deleteList(shopping_list)" icon="pi pi-trash"></p-button>
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-shopping_list>

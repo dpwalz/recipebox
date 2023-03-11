@@ -10,12 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import {DialogModule} from 'primeng/dialog';
 import { ToastModule } from "primeng/toast";
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 @NgModule({
     imports: [
         ButtonModule,
         CardModule,
         CommonModule,
+        ConfirmDialogModule,
         DialogModule,
         DropdownModule,
         FormsModule,
