@@ -6,8 +6,9 @@ import { DropdownModule } from "primeng/dropdown";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
-import { InputTextModule } from "primeng/inputtext";
 import { ToastModule } from "primeng/toast";
+import {InputNumberModule} from 'primeng/inputnumber';
+import { InputTextModule } from "primeng/inputtext";
 
 @NgModule({
     imports: [
@@ -16,10 +17,10 @@ import { ToastModule } from "primeng/toast";
         DropdownModule,
         FormsModule,
         InputTextModule,
+        InputNumberModule,
         RippleModule,
         TableModule,
         ToastModule
-        
     ],
     exports: [
         ItemListComponent

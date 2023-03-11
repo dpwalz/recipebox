@@ -39,6 +39,10 @@ export class ShoppingListComponent implements OnChanges{
         this.updateSelectedList.emit(event);
     }
 
+    updateParent(event: String): void {
+        this.updateShoppingList.emit('');
+    }
+
     itemClick(list_item: ShoppingList) {
         this.selectedItem = list_item;
         this.showDisplay(true);

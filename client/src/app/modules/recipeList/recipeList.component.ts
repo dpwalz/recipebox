@@ -14,9 +14,6 @@ export class RecipeListComponent implements OnChanges {
     @Input() recipes: Recipe[] = [];
     @Output() updateShoppingList = new EventEmitter<String>();
     selectedRecipe: Recipe | undefined;
-    
-    
-    
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -26,7 +23,6 @@ export class RecipeListComponent implements OnChanges {
     ){}
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes);
         for (let changeName in changes){
             if(changeName === "recipes"){
                 this.recipes = changes[changeName].currentValue;

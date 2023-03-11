@@ -19,6 +19,11 @@ export interface ItemResponse {
     data: ShoppingList[];
 }
 
+export interface UpdateResponse {
+    status: string;
+    data: any;
+}
+
 export interface ShoppingList {
     ingredient_id: string;
     list_id?: string;
