@@ -1,0 +1,10 @@
+.inCart {
+    font-weight: 700;
+    color: #FF5252;
+    text-decoration: line-through;
+}
+
+:host ::ng-deep .row-accessories {
+    text-decoration: line-through;
+    background-color: rgba(0,0,0,.15) !important;
+}

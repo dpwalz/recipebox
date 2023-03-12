@@ -14,9 +14,16 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import { ItemListModule } from "../itemsList/itemList.module";
 import { UpdateItemModule } from "../updateItem/updateItem.module";
+import { ShoppingToolModule } from "../shoppingTool/shoppingTool.module";
 
 
 @NgModule({
+    exports: [
+        ShoppingListComponent
+    ],
+    declarations: [
+        ShoppingListComponent
+    ],
     imports: [
         ButtonModule,
         CardModule,
@@ -29,15 +36,10 @@ import { UpdateItemModule } from "../updateItem/updateItem.module";
         OverlayPanelModule,
         RippleModule,
         SharedModule,
+        ShoppingToolModule,
         TableModule,
         ToastModule,
-        UpdateItemModule
-    ],
-    exports: [
-        ShoppingListComponent
-    ],
-    declarations: [
-        ShoppingListComponent
-    ],
+        UpdateItemModule,
+    ]
 })
 export class ShoppingListModule {}

@@ -3,6 +3,7 @@ import { ConfirmationService } from "primeng/api";
 import { ShoppingList, ShoppingLists } from "src/app/models/shoppingList.interface";
 import { ShoppingListService } from "src/app/services/shoppingList.service";
 import { DatePipe } from "@angular/common";
+import { Overlay } from "primeng/overlay";
 
 
 @Component({
@@ -38,6 +39,7 @@ export class ShoppingListComponent implements OnChanges{
 
     selectList(event: ShoppingLists): void {
         this.updateSelectedList.emit(event);
+        this.selectedList = event;
     }
 
     updateParent(event: String): void {

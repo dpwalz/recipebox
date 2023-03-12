@@ -30,4 +30,5 @@ export interface ShoppingList {
     ingredient_name: string;
     quantity?: number;
     unit?: string;
+    found?: boolean;
 }

@@ -8,6 +8,10 @@
     </ng-template>
 </p-dialog>
 
+<p-overlayPanel #op>
+    <app-shopping-tool [selectedList]="selectedList"></app-shopping-tool>
+</p-overlayPanel>
+
 <p-dialog [(visible)]="displayUpdate">
    <app-update-item 
     [item]="selectedItem"
@@ -27,6 +31,7 @@
     <ng-template pTemplate="header">
         <h2>Your Shopping Lists</h2>
         <button pButton label="Create New List" icon="pi pi-plus" (click)="onClick()"></button>
+        <button [disabled]="!selectedList" type="text" pButton label="Go Shopping!" (click)="op.toggle($event)"></button>
     </ng-template>
     <p *ngIf="" >Expand to see list contents</p>
     <p-table [value]="shopping_lists" selectionMode="single" (onRowSelect)="selectList($event.data)" [(selection)]="selectedList" dataKey="list_id" [tableStyle]="{'min-width': '60rem'}">
