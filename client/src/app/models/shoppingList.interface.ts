@@ -8,6 +8,11 @@ export interface ListCreationResponse {
     data: string;
 }
 
+export interface DetailsResponse {
+    status: string,
+    data: ShoppingList[]
+}
+
 export interface ShoppingLists {
     list_id: string;
     creation_date: Date;

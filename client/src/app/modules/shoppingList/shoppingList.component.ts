@@ -21,6 +21,7 @@ export class ShoppingListComponent implements OnChanges{
     selectedItem!: ShoppingList;
     displayPanel: boolean = false;
     displayUpdate: boolean = false;
+    panelFlag: boolean = true;
 
     constructor(
         private listService: ShoppingListService,
@@ -91,6 +92,10 @@ export class ShoppingListComponent implements OnChanges{
     togglePanel(list: ShoppingLists) {
         this.selectedList = list;
         this.displayPanel = true;
+    }
+
+    toggleOverlayPanel() {
+        this.panelFlag = !this.panelFlag;
     }
 }
 

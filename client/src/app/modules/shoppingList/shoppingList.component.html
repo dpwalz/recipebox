@@ -8,8 +8,12 @@
     </ng-template>
 </p-dialog>
 
-<p-overlayPanel #op>
-    <app-shopping-tool [selectedList]="selectedList"></app-shopping-tool>
+<p-overlayPanel  #op (onShow)="toggleOverlayPanel()">
+    <app-shopping-tool 
+        *ngIf="selectedList" 
+        [selectedList]="selectedList.list_id"
+        [panelFlag]="panelFlag"
+    ></app-shopping-tool>
 </p-overlayPanel>
 
 <p-dialog [(visible)]="displayUpdate">

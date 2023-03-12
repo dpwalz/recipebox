@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
-import { ShoppingList, ShoppingLists } from "src/app/models/shoppingList.interface";
+import { ShoppingList } from "src/app/models/shoppingList.interface";
+import { ShoppingListService } from "src/app/services/shoppingList.service";
 
 @Component({
     selector: 'app-shopping-tool',
@@ -8,14 +9,25 @@ import { ShoppingList, ShoppingLists } from "src/app/models/shoppingList.interfa
 })
 export class ShoppingToolComponent implements OnChanges{
 
-    @Input() selectedList!: ShoppingLists;
-    currentList: ShoppingList[] = [];
+    @Input() selectedList!: string;
+    @Input() panelFlag!: boolean;
+    currentList!: ShoppingList[];
+
+    constructor(
+        private listService: ShoppingListService
+    ){}
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes);
-        this.selectedList = changes['selectedList'].currentValue;
-        this.currentList = this.selectedList?.items;
-        
+        if(changes['selectedList']){
+            this.selectedList = changes['selectedList'].currentValue;
+        }
+        this.listService.getShoppingListDetails(this.selectedList)
+            .subscribe({
+                next: (response) => {
+                    this.currentList = response.data;
+                },
+                error: (e) => console.log(e)
+            })
     }
 
     itemInCart(event: ShoppingList){

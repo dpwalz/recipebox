@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/assets/environments/environment";
 import { DefaultResponse } from "../models/default.interface";
-import { ListCreationResponse, ListResponse, ShoppingList, ShoppingLists, UpdateResponse } from "../models/shoppingList.interface";
+import { DetailsResponse, ListCreationResponse, ListResponse, ShoppingList, ShoppingLists, UpdateResponse } from "../models/shoppingList.interface";
 
 
 
@@ -19,6 +19,10 @@ export class ShoppingListService {
     
     getUserShoppingList(): Observable<ListResponse> {
         return this.http.get<ListResponse>(`${this.apiUrl}/lists/`)
+    }
+
+    getShoppingListDetails(list_id: string): Observable<DetailsResponse> {
+        return this.http.get<DetailsResponse>(`${this.apiUrl}/lists/${list_id}`)
     }
 
     createNewList(): Observable<ListCreationResponse> {

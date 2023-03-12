@@ -47,6 +47,10 @@ controllerMethods.getListDetailsById = async(req, res) => {
     try {
         const { list_id } = req.params;
         const listDetails = await listService.getListDetailsById(list_id);
+        for (const item of listDetails) {
+            const { ingredient_name } = await getItemName(item.ingredient_id);
+            item.ingredient_name = ingredient_name;
+        } 
         res.status(200).send({
             status: "OK", 
             data: listDetails

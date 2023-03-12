@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table [value]="currentList" selectionMode="single" (onRowSelect)="itemInCart($event.data)" [(selection)]="selectedList" dataKey="ingredient_id" styleClass="p-datatable-sm" >
+    <p-table *ngIf="currentList" [value]="currentList" selectionMode="single" (onRowSelect)="itemInCart($event.data)" [(selection)]="selectedList" dataKey="ingredient_id" styleClass="p-datatable-sm" >
         <ng-template pTemplate="caption">
             Your Shopping List
         </ng-template>
