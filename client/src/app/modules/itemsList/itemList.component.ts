@@ -9,9 +9,12 @@ import { ShoppingListService } from "src/app/services/shoppingList.service";
     templateUrl: './itemList.component.html'
 })
 export class ItemListComponent implements OnInit{
-
+    
+    itemInput!: string;
+    display: boolean = false;
     items_list: ShoppingList[] = [];
-    units: String[] = ['tbsp', 'cup', 'bulk']
+    // Have option for dry, bulk, or wet products. 
+    units: String[] = ['pinch', 'tsp', 'tbsp', 'cup', 'bulk', 'oz']
     first: number = 0;
     rows: number = 10;
     private _list_id: string = '';
@@ -31,12 +34,17 @@ export class ItemListComponent implements OnInit{
     ){}
 
     ngOnInit(): void {
+        this.updateItems();
+    }
 
+    updateItems(): void {
         this.itemService.getItems().subscribe({
             next: (response) => {
+                let dummy_items_list: ShoppingList[] = [];
                 response.data.forEach( (item) => {
-                    this.items_list.push(item);
+                    dummy_items_list.push(item);
                 });
+                this.items_list = dummy_items_list;
             },
             error: (e) => console.log(e)
         })
@@ -48,10 +56,28 @@ export class ItemListComponent implements OnInit{
             .subscribe({
                 next: () => {
                     this.updateParent.next('');
-                }
+                },
+                error: (e) => console.log(e)
             })
+    }
 
+    toggle(): void {
+        this.display = true;
+    }
 
+    resetInput(): void {
+        this.itemInput = "";
+    }
+
+    addNewItem(input: string): void {
+        this.itemService.addItem(input)
+            .subscribe({
+                next: () => {
+                    this.updateItems();
+                },
+                error: (e) => console.log(e),
+                complete: () => this.display = false
+            })
     }
 
     next() {

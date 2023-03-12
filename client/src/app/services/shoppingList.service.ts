@@ -29,6 +29,10 @@ export class ShoppingListService {
         return this.http.post<UpdateResponse>(`${this.apiUrl}/lists/${item.list_id}`, item)
     }
 
+    updateIngredient(item: ShoppingList): Observable<UpdateResponse> {
+        return this.http.post<UpdateResponse>(`${this.apiUrl}/lists/${item.list_id}/item/${item.ingredient_id}`, item);
+    }
+
     deleteItemFromList(item: ShoppingList): Observable<DefaultResponse> {
         return this.http.delete<DefaultResponse>(`${this.apiUrl}/lists/${item.list_id}/ingredient/${item.ingredient_id}`);
     }

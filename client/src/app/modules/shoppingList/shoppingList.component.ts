@@ -19,6 +19,7 @@ export class ShoppingListComponent implements OnChanges{
     display: boolean = false;
     selectedItem!: ShoppingList;
     displayPanel: boolean = false;
+    displayUpdate: boolean = false;
 
     constructor(
         private listService: ShoppingListService,
@@ -41,6 +42,7 @@ export class ShoppingListComponent implements OnChanges{
 
     updateParent(event: String): void {
         this.updateShoppingList.emit('');
+        this.displayUpdate = false;
     }
 
     itemClick(list_item: ShoppingList) {
@@ -62,7 +64,12 @@ export class ShoppingListComponent implements OnChanges{
     }
 
     editItem(){
-        console.log(this.selectedItem.ingredient_id);
+        this.displayUpdate = true;
+        this.display = false;
+    }
+
+    updateItem(): void {
+        this.displayUpdate = false;
     }
 
     deleteList(list: ShoppingLists){

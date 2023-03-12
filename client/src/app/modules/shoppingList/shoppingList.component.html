@@ -8,6 +8,13 @@
     </ng-template>
 </p-dialog>
 
+<p-dialog [(visible)]="displayUpdate">
+   <app-update-item 
+    [item]="selectedItem"
+    (updateParent)="updateParent($event)"
+    ></app-update-item>
+</p-dialog>
+
 <p-dialog [(visible)]="displayPanel">
     <app-item-list *ngIf="selectedList" 
         [list_id]="selectedList.list_id"

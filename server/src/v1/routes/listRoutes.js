@@ -12,6 +12,8 @@ router.get("/:list_id", listController.getListDetailsById);
 
 router.post("/:list_id", listController.addIngredient);
 
+router.post("/:list_id/item/:item_id", listController.updateIngredient);
+
 router.post("/:list_id/recipe/:recipe_id", listController.addRecipe);
 
 router.delete("/:list_id/ingredient/:ingredient_id", listController.removeIngredient);

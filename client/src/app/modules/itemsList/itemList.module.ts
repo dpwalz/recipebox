@@ -9,11 +9,14 @@ import { RippleModule } from "primeng/ripple";
 import { ToastModule } from "primeng/toast";
 import {InputNumberModule} from 'primeng/inputnumber';
 import { InputTextModule } from "primeng/inputtext";
+import { DialogModule } from "primeng/dialog";
+
 
 @NgModule({
     imports: [
         ButtonModule,
         CommonModule,
+        DialogModule,
         DropdownModule,
         FormsModule,
         InputTextModule,

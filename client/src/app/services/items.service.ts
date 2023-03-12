@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/assets/environments/environment";
-import { ItemResponse } from "../models/shoppingList.interface";
+import { ItemResponse, UpdateResponse } from "../models/shoppingList.interface";
 
 
 
@@ -19,6 +19,10 @@ export class ItemsService {
 
     getItems(): Observable<ItemResponse>{
         return this.http.get<ItemResponse>(`${this.apiUrl}/items/`);
+    }
+
+    addItem(item: string): Observable<UpdateResponse>{
+        return this.http.post<UpdateResponse>(`${this.apiUrl}/items/`, { name: item });
     }
 
 

@@ -34,7 +34,7 @@ VALUES
 ('I_001','Olive Oil'),
 ('I_002','Onion (Yellow)'),
 ('I_003','Carrot'),
-('I_004','Garlic'),
+('I_004','Garlic (Clove)'),
 ('I_005','Cumin'),
 ('I_006','Curry Powder'),
 ('I_007','Thyme (dried)'),
@@ -84,13 +84,13 @@ CREATE TABLE RECIPE_INGREDIENTS(
 INSERT INTO RECIPE_INGREDIENTS (recipe_id, ingredient_id, quantity, unit)
 VALUES
 ('R_001','I_017','4','tbsp'),
-('R_001','I_002','1', 'medium'),
-('R_001','I_004','1', 'clove'),
+('R_001','I_002','1', 'bulk'),
+('R_001','I_004','1', 'bulk'),
 ('R_001','I_018','0.25', 'cup'),
 ('R_001','I_010','2', 'cup'),
 ('R_001','I_019','2', 'cup'),
 ('R_001','I_020','4', 'cup'),
-('R_001','I_003','2', 'large'),
+('R_001','I_003','2', 'bulk'),
 ('R_001','I_012','0.75', 'tsp'),
 ('R_001','I_014','0.75', 'tsp'),
 ('R_001','I_021','0.5', 'tsp'),
@@ -98,7 +98,7 @@ VALUES
 ('R_001','I_023','1', 'pinch'),
 ('R_001','I_024','8', 'oz'),
 ('R_002','I_001','0.25', 'cup'),
-('R_002','I_002','1', 'medium'),
+('R_002','I_002','1', 'bulk'),
 ('R_002','I_003','2', 'large'),
 ('R_002','I_004','4', 'clove'),
 ('R_002','I_005','2', 'tsp'),
@@ -125,7 +125,7 @@ CREATE TABLE SHOPPING_LIST(
 
 INSERT INTO SHOPPING_LIST (user_id, list_id)
 VALUES 
-(null, 1231235);
+('U_0001', 1231235);
 
 DROP TABLE IF EXISTS SHOPPING_LIST_DETAILS;
 CREATE TABLE SHOPPING_LIST_DETAILS(
@@ -137,10 +137,12 @@ CREATE TABLE SHOPPING_LIST_DETAILS(
     foreign key (list_id) references SHOPPING_LIST(list_id) ON DELETE CASCADE,
 	foreign key (ingredient_id) references INGREDIENTS(ingredient_id)
 );
-
+SELECT * FROM SHOPPING_LIST;
 SELECT * FROM SHOPPING_LIST_DETAILS;
 
-
+SELECT * FROM REGISTERED_USER;
 
 SELECT * FROM RECIPES;
 SELECT * FROM RECIPE_INGREDIENTS;
+-- DELETE FROM SHOPPING_LIST_DETAILS WHERE list_id = "3a85ee34-2ff0-481c-8c31-d5d4a3ec1f7f";
+-- SELECT * FROM SHOPPING_LIST_DETAILS;

@@ -13,6 +13,7 @@ import { ToastModule } from "primeng/toast";
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import { ItemListModule } from "../itemsList/itemList.module";
+import { UpdateItemModule } from "../updateItem/updateItem.module";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ItemListModule } from "../itemsList/itemList.module";
         RippleModule,
         SharedModule,
         TableModule,
-        ToastModule
+        ToastModule,
+        UpdateItemModule
     ],
     exports: [
         ShoppingListComponent

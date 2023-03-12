@@ -46,7 +46,6 @@ export class ProfileComponent implements OnInit {
     updateShoppingList(test: String): void{
         this.listService.getUserShoppingList()
             .subscribe({next: (items) => {
-                            console.log(test);
                             let new_lists: ShoppingLists[] = [];
                             items.data.forEach(element => {
                                 new_lists.push(element);

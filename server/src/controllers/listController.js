@@ -59,6 +59,23 @@ controllerMethods.getListDetailsById = async(req, res) => {
     }
 }
 
+controllerMethods.updateIngredient = async(req, res) => {
+    try {
+        const { list_id, item_id } = req.params;
+        const { body } = req;
+        body.quantity = Number(body.quantity);
+        body.list_id = list_id;
+        body.ingredient_id = item_id;
+        const newIngredient = await listService.updateIngredient(body);
+        res.status(200).send({status: "OK", data: newIngredient});
+    } catch (err) {
+        res.status(err?.status || 500).send({
+            status: "FAILED",
+            data: { error: err?.message || err }
+        });
+    }
+}
+
 controllerMethods.addIngredient = async(req, res) => {
     try {
         const { list_id } = req.params;

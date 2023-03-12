@@ -1,48 +1,9 @@
-<p-dialog [(visible)]="display" 
-        [style]="{width: '50vw'}"
-        (onHide)="resetInput()"
->
-    <ng-template pTemplate="header">
-        Enter the name of your new item: 
-    </ng-template>
-    <input pInputText type="text" placeholder="Item Name" autocomplete="off" [(ngModel)]="itemInput">
-    <ng-template pTemplate="footer">
-        <span class="p-buttonset">
-            <button class="p-button-sm" pButton 
-                type="button" 
-                [disabled]="!itemInput" 
-                (click)="addNewItem(itemInput)" 
-                icon="pi pi-check" 
-                label="Add" ></button>
-        </span>
-    </ng-template>
-</p-dialog>
-
 <div class="card">
     <h3>Add Items To Your List!</h3>
-        <p-table #dt1 [value]="items_list" 
+        <p-table #dt1 [value]="[item]" 
         dataKey="id" 
-        editMode="row" 
-        [rows]="rows"
-        [totalRecords]="items_list.length" 
-        [showCurrentPageReport]="true" 
-        [rowsPerPageOptions]="[5,10,50]"
-        [paginator]="true" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [globalFilterFields]="['ingredient_name']"
+        editMode="row"
         >
-            <ng-template pTemplate="caption">
-                <div class="p-d-flex">
-                    <span class="p-input-icon-left p-ml-auto">
-                        <i class="pi pi-search"></i>
-                        <input pInputText #textInput type="text" (input)="dt1.filterGlobal(textInput.value, 'contains')" placeholder="Search keyword" />
-                    </span>
-                    <span>
-                        <p>Can't Find What you Want? Just add a new Item to the List!</p>
-                        <button pButton pRipple label="New Item" type="button" icon="pi pi-plus" (click)="toggle()" class="p-button-rounded"></button>
-                    </span>
-                </div>
-            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width:20%">Name</th>
