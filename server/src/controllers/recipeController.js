@@ -22,4 +22,25 @@ controllerMethods.deleteRecipe = async (req, res) => {
     }
 }
 
+// Spoonacular API Controller Methods
+controllerMethods.spoonacularSearchRecipes = async(req, res) => {
+    try {
+        const { search_term } = req.params;
+        const searchResults = await recipeService.spoonacularSearchRecipes(search_term);
+        res.status(200).send({ status: "OK", data: searchResults });
+    } catch (err) {
+        res.status(err?.status || 500).send({status: "FAILED", data: {error: err?.message || err}});
+    }
+}
+
+controllerMethods.spoonacularRecipeDetails = async(req, res) => {
+    try {
+        const { recipe_id } = req.params;
+        const recipeDetails = await recipeService.spoonacularRecipeDetails(recipe_id);
+        res.status(200).send({ status: "OK", data: recipeDetails });
+    } catch (err) {
+        res.status(err?.status || 500).send({status: "FAILED", data: {error: err?.message || err}})
+    }
+}
+
 module.exports = controllerMethods;

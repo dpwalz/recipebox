@@ -43,4 +43,49 @@ serviceMethods.getRecipeIngredients = async( recipe_id ) => {
     }
 }
 
+const spoonacular_headers = {
+    "x-api-key": process.env.S_API_KEY,   
+    "Content-Type": "application/json",
+}
+// Spoonacular API Service Methods
+serviceMethods.spoonacularSearchRecipes = async( search_term ) => {
+    try {
+        const response = await fetch(`${process.env.S_API_URL}recipes/complexSearch?query=${search_term}`, {
+            method: "GET",
+            headers: spoonacular_headers,
+          });
+          const results = await response.json();
+          return results;
+    } catch (err) {
+        throw err;
+    }
+}
+
+serviceMethods.spoonacularRecipeDetails = async( recipe_id ) => {
+    try {
+        const response = await fetch(`${process.env.S_API_URL}recipes/${recipe_id}/information`, {
+            method: "GET",
+            headers: spoonacular_headers,
+          });
+        const results = await response.json();
+        const ingredients = results.extendedIngredients.map((item) => item.original)
+        const recipe_details = {
+            summary: results.summary,
+            id: results.id,
+            title: results.title,
+            image: results.image,
+            servings: results.servings,
+            readyInMinutes: results.readyInMinutes,
+            extendedIngredients: ingredients
+        }
+        return recipe_details; 
+    } catch (err) {
+        throw err;
+    }
+}
+
+serviceMethods.spoonacularSaveRecipe = async( recipe_id ) => {
+    
+}
+
 module.exports = serviceMethods;
