@@ -68,24 +68,14 @@ serviceMethods.spoonacularRecipeDetails = async( recipe_id ) => {
             headers: spoonacular_headers,
           });
         const results = await response.json();
-        const ingredients = results.extendedIngredients.map((item) => item.original)
-        const recipe_details = {
-            summary: results.summary,
-            id: results.id,
-            title: results.title,
-            image: results.image,
-            servings: results.servings,
-            readyInMinutes: results.readyInMinutes,
-            extendedIngredients: ingredients
-        }
-        return recipe_details; 
+        return results; 
     } catch (err) {
         throw err;
     }
 }
 
-serviceMethods.spoonacularSaveRecipe = async( recipe_id ) => {
-    
-}
+// serviceMethods.spoonacularSaveRecipe = async( recipe_id ) => {
+//     const response = await 
+// }
 
 module.exports = serviceMethods;

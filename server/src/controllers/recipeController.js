@@ -37,7 +37,17 @@ controllerMethods.spoonacularRecipeDetails = async(req, res) => {
     try {
         const { recipe_id } = req.params;
         const recipeDetails = await recipeService.spoonacularRecipeDetails(recipe_id);
-        res.status(200).send({ status: "OK", data: recipeDetails });
+        const ingredients = recipeDetails.extendedIngredients.map((item) => item.original)
+        const recipe_details = {
+            summary: recipeDetails.summary,
+            id: recipeDetails.id,
+            title: recipeDetails.title,
+            image: recipeDetails.image,
+            servings: recipeDetails.servings,
+            readyInMinutes: recipeDetails.readyInMinutes,
+            extendedIngredients: ingredients
+        }
+        res.status(200).send({ status: "OK", data: recipe_details });
     } catch (err) {
         res.status(err?.status || 500).send({status: "FAILED", data: {error: err?.message || err}})
     }
