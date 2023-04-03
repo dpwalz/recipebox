@@ -18,8 +18,9 @@ modelMethods.getAllItems = () => {
 
 modelMethods.addNewItem = ( body ) => {
     return new Promise(async (resolve, reject) => {
+        const { id, name } =  body;
+        console.log(`name: ${name}`);
         try{
-            const { id, name } =  body;
             const insert = await connection.query(
                 `INSERT INTO INGREDIENTS(ingredient_id, ingredient_name) VALUES (?, ?)`,
                 [id, name]
@@ -30,6 +31,13 @@ modelMethods.addNewItem = ( body ) => {
             );
             return resolve(results[0]);
         } catch (err) {
+            if(err.message.includes("ER_DUP_ENTRY")){
+                const results = await connection.query(
+                    `SELECT * FROM INGREDIENTS WHERE ingredient_name = ?`, 
+                    [name]
+                );
+                return resolve(results[0]);
+            }
             return reject(err);
         } 
     });

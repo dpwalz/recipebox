@@ -48,4 +48,24 @@ modelMethods.getRecipeIngredients = (recipe_id) => {
   })
 }
 
+modelMethods.addNewRecipe = ( recipeToAdd ) => {
+  return new Promise( async(resolve, reject) => {
+    try {
+      const { user_id, recipe_id, recipe_name } = recipeToAdd;
+      const insert = await connection.query(
+        `INSERT INTO RECIPES (user_id, recipe_id, recipe_name) VALUES (?, ?, ?)`,
+        [user_id, recipe_id, recipe_name]
+      );
+      const results = await connection.query(
+        `SELECT * FROM RECIPES WHERE recipe_id = ?`, 
+        [recipe_id]
+      );
+      return resolve(results[0]);
+    } catch (err) {
+      return reject(err); 
+    }
+  })
+}
+
+
 module.exports = modelMethods;

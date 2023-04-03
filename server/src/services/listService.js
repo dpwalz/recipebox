@@ -1,6 +1,6 @@
 const { v4: uuid } = require("uuid");
 const List = require("../models/ShoppingList");
-const { combineUnits } = require("../config/helper");
+const { combineUnits, conversionAvailable } = require("../config/helper");
 
 const serviceMethods = {};
 
@@ -52,22 +52,27 @@ serviceMethods.getListDetailsById = async(list) => {
 serviceMethods.addIngredient = async(newIngredient) => {
     try {
         const { ingredient_id, list_id } = newIngredient;
-        const existingItem = await serviceMethods.getIngredientById(newIngredient);
+        const existingItems = await serviceMethods.getIngredientById(newIngredient);
         let itemDetails;
-        if(existingItem){
-            itemDetails = await combineUnits(newIngredient, existingItem);
-            const itemToUpdate = {
-                ...itemDetails,
-                ingredient_id: ingredient_id,
-                list_id: list_id
-            }   
-            const updateItem = await serviceMethods.updateIngredient(itemToUpdate);
-            return updateItem;
-        } else {
-            const insertItem = await List.addIngredient(newIngredient);
-            return insertItem;
-        }  
+        if(existingItems.length > 0){
+            for(let i = 0; i < existingItems.length; i++){
+                let canCombine = await conversionAvailable(newIngredient.unit, existingItems[i].unit);
+                if(canCombine){
+                    itemDetails = await combineUnits(newIngredient, existingItems[i]);
+                    const itemToUpdate = {
+                        ...itemDetails,
+                        ingredient_id: ingredient_id,
+                        list_id: list_id
+                    }   
+                    const updateItem = await serviceMethods.updateIngredient(itemToUpdate);
+                    return updateItem;
+                }  
+            }
+        } 
+        const insertItem = await List.addIngredient(newIngredient);
+        return insertItem;  
     } catch (err) {
+        console.log(err);
         throw err;
     }
 }
@@ -136,6 +141,7 @@ serviceMethods.addIngredients = async(list_id, items) => {
         
         return `${counter} items added to list`;
     } catch (err) {
+        console.log(err);
         throw err;
     }
 }

@@ -14,9 +14,7 @@ serviceMethods.addNewItem = async (newItem) => {
             ...newItem, 
             id: uuid()
         };
-    
         const createdItem = await Item.addNewItem(itemToInsert);
-        
         return createdItem;
     } catch (err) {
         throw err;

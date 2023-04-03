@@ -1,29 +1,39 @@
 
-const unitRelativeSize = ['pinch', 'tsp', 'tbsp', 'cup'];
+const unitRelativeSize = ['pinch', 'tsps', 'tbsps', 'cups'];
 
 const compareDictionary = [
     { 
         size: 'pinch',
         multiplier: [
-            {size: 'tsp', multiplier: 0.0625},
-            {size: 'tbsp', multiplier: 0.0208333},
-            {size: 'cup', multiplier: 0.0013020833}
+            {size: 'tsps', multiplier: 0.0625},
+            {size: 'tbsps', multiplier: 0.0208333},
+            {size: 'cups', multiplier: 0.0013020833}
         ]
     },
     {
-        size: 'tsp',
+        size: 'tsps',
         multiplier: [
-        {size: 'tbsp', multiplier: 0.333333},
-        {size: 'cup', multiplier: 0.0208333}
+        {size: 'tbsps', multiplier: 0.333333},
+        {size: 'cups', multiplier: 0.0208333}
         ]
     },
     {
-        size: 'tbsp',
+        size: 'tbsps',
         multiplier: [
-            {size: 'cup', multiplier: 0.0625},
+            {size: 'cups', multiplier: 0.0625},
         ]
     }
 ]
+
+const conversionAvailable = async(unit1, unit2) => {
+    if(unit1 === unit2){
+        return true;
+    } else if (unitRelativeSize.includes(unit1) && unitRelativeSize.includes(unit2)){
+        return true;
+    } else {
+        return false;
+    }
+}
 
 const compareUnits = (unit1, unit2) => {
     let compare = unit1 === unit2
@@ -75,4 +85,4 @@ const combineUnits = async(payload1, payload2) => {
     }
 }
 
-module.exports = {combineUnits};
+module.exports = {combineUnits, conversionAvailable};

@@ -11,6 +11,8 @@ router.get("/complexSearch/:search_term", recipeController.spoonacularSearchReci
 
 router.get("/:recipe_id/information", recipeController.spoonacularRecipeDetails);
 
+router.post("/:recipe_id", checkUserId, recipeController.spoonacularSaveRecipe);
+
 router.delete("/:recipe_id", checkUserId, recipeController.deleteRecipe);
 
 module.exports = router;

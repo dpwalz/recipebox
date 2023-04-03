@@ -49,7 +49,20 @@ controllerMethods.spoonacularRecipeDetails = async(req, res) => {
         }
         res.status(200).send({ status: "OK", data: recipe_details });
     } catch (err) {
-        res.status(err?.status || 500).send({status: "FAILED", data: {error: err?.message || err}})
+        res.status(err?.status || 500).send({ status: "FAILED", data: { error: err?.message || err }});
+    }
+}
+
+controllerMethods.spoonacularSaveRecipe = async(req, res) => {
+    try {
+        const recipePackage = {
+            user_id: req.userId,
+            recipe_id: req.params.recipe_id
+        };
+        const saveRecipe = await recipeService.spoonacularSaveRecipe(recipePackage);
+        res.status(200).send({ status: "OK", data: saveRecipe });
+    } catch (err) {
+        res.status(err?.status || 500).send({ status: "FAILED", data: { error: err?.message || err }});
     }
 }
 

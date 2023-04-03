@@ -1,5 +1,6 @@
 const DatabaseConnection = require("../config/database");
 const connection = DatabaseConnection.getDatabaseInstance();
+const { v4: uuid } = require("uuid");
 
 const modelMethods  = {};
 
@@ -60,9 +61,9 @@ modelMethods.addIngredient = (query) => {
                 unit
             } = query; 
             const insert = connection.query(
-                `INSERT INTO SHOPPING_LIST_DETAILS(list_id, ingredient_id, quantity, unit)
-                VALUES(?, ?, ?, ?)`,
-                [list_id, ingredient_id, quantity, unit]
+                `INSERT INTO SHOPPING_LIST_DETAILS(sld_id, list_id, ingredient_id, quantity, unit)
+                VALUES(?, ?, ?, ?, ?)`,
+                [uuid(), list_id, ingredient_id, quantity, unit]
             );
             return resolve(insert);
         } catch (err) {
@@ -78,7 +79,7 @@ modelMethods.getIngredientById = (list_id, ingredient_id) => {
                 `SELECT * FROM SHOPPING_LIST_DETAILS WHERE list_id = ? AND ingredient_id = ?`,
                 [list_id, ingredient_id]
             );
-            return resolve(result[0]);
+            return resolve(result);
         } catch (err) {
             return reject(err);   
         }

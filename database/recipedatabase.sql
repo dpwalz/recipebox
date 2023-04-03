@@ -31,30 +31,30 @@ CREATE TABLE INGREDIENTS (
 
 INSERT INTO INGREDIENTS (ingredient_id, ingredient_name)
 VALUES
-('I_001','Olive Oil'),
-('I_002','Onion (Yellow)'),
-('I_003','Carrot'),
-('I_004','Garlic (Clove)'),
-('I_005','Cumin'),
-('I_006','Curry Powder'),
-('I_007','Thyme (dried)'),
-('I_008','Tomatoes (diced)'),
-('I_009','Lentils'),
-('I_010','Vegetable Stock'),
-('I_011','Water'),
-('I_012','Salt'),
-('I_013','Red Pepper Flakes'),
-('I_014','Ground Pepper'),
-('I_015','Kale'),
-('I_016','Lemon Juice'),
-('I_017','Butter'),
-('I_018','Flour'),
-('I_019','Cream (Half-and-Half)'),
-('I_020','Broccoli'),
-('I_021','Paprika'),
-('I_022','Mustard (Powder)'),
-('I_023','Cayenne Pepper'),
-('I_024','Cheddar Cheese');
+('I_001','extra virgin olive oil'),
+('I_002','onion (yellow)'),
+('I_003','carrot'),
+('I_004','whole garlic cloves'),
+('I_005','cumin'),
+('I_006','curry powder'),
+('I_007','thyme dried'),
+('I_008','tomatoes diced'),
+('I_009','lentils'),
+('I_010','vegetable stock'),
+('I_011','water'),
+('I_012','table salt'),
+('I_013','red pepper flakes'),
+('I_014','ground pepper'),
+('I_015','kale'),
+('I_016','lemon juice'),
+('I_017','butter'),
+('I_018','flour'),
+('I_019','cream (half-and-half)'),
+('I_020','broccoli'),
+('I_021','paprika'),
+('I_022','mustard powder'),
+('I_023','cayenne pepper'),
+('I_024','cheddar cheese');
 
 DROP TABLE IF EXISTS RECIPES;
 CREATE TABLE RECIPES(
@@ -72,47 +72,48 @@ VALUES
 
 DROP TABLE IF EXISTS RECIPE_INGREDIENTS;
 CREATE TABLE RECIPE_INGREDIENTS(
-	recipe_id 					varchar(255) DEFAULT(uuid()) not null,
-	ingredient_id 				varchar(255) DEFAULT(uuid()) not null,
+	ri_id					varchar(255) DEFAULT(uuid()) not null,
+	recipe_id 				varchar(255) DEFAULT(uuid()) not null,
+	ingredient_id 			varchar(255) DEFAULT(uuid()) not null,
 	quantity				decimal(13, 2),
 	unit 					varchar(255),
-	primary key (recipe_id, ingredient_id),
+	primary key (ri_id),
 	foreign key (recipe_id) references RECIPES(recipe_id) ON DELETE CASCADE,
 	foreign key (ingredient_id) references INGREDIENTS(ingredient_id)
 );
 
-INSERT INTO RECIPE_INGREDIENTS (recipe_id, ingredient_id, quantity, unit)
+INSERT INTO RECIPE_INGREDIENTS (ri_id, recipe_id, ingredient_id, quantity, unit)
 VALUES
-('R_001','I_017','4','tbsp'),
-('R_001','I_002','1', 'bulk'),
-('R_001','I_004','1', 'bulk'),
-('R_001','I_018','0.25', 'cup'),
-('R_001','I_010','2', 'cup'),
-('R_001','I_019','2', 'cup'),
-('R_001','I_020','4', 'cup'),
-('R_001','I_003','2', 'bulk'),
-('R_001','I_012','0.75', 'tsp'),
-('R_001','I_014','0.75', 'tsp'),
-('R_001','I_021','0.5', 'tsp'),
-('R_001','I_022','0.5', 'tsp'),
-('R_001','I_023','1', 'pinch'),
-('R_001','I_024','8', 'oz'),
-('R_002','I_001','0.25', 'cup'),
-('R_002','I_002','1', 'bulk'),
-('R_002','I_003','2', 'large'),
-('R_002','I_004','4', 'clove'),
-('R_002','I_005','2', 'tsp'),
-('R_002','I_006','1', 'tsp'),
-('R_002','I_007','0.5', 'tsp'),
-('R_002','I_008','28', 'oz'),
-('R_002','I_009','1', 'cup'),
-('R_002','I_010','4', 'cup'),
-('R_002','I_011','2', 'cup'),
-('R_002','I_012','1', 'tsp'),
-('R_002','I_013','1', 'pinch'),
-('R_002','I_014','1', 'pinch'),
-('R_002','I_015','1', 'cup'),
-('R_002','I_016','2', 'tbsp');
+('RI_001', 'R_001','I_017','4','tbsps'),
+('RI_002', 'R_001','I_002','1', ''),
+('RI_003', 'R_001','I_004','1', ''),
+('RI_004', 'R_001','I_018','0.25', 'cups'),
+('RI_005', 'R_001','I_010','2', 'cups'),
+('RI_006', 'R_001','I_019','2', 'cups'),
+('RI_007', 'R_001','I_020','4', 'cups'),
+('RI_008', 'R_001','I_003','2', ''),
+('RI_009', 'R_001','I_012','0.75', 'tsps'),
+('RI_010', 'R_001','I_014','0.75', 'tsps'),
+('RI_011', 'R_001','I_021','0.5', 'tsps'),
+('RI_012', 'R_001','I_022','0.5', 'tsps'),
+('RI_013', 'R_001','I_023','1', 'pinch'),
+('RI_014', 'R_001','I_024','8', 'oz'),
+('RI_015', 'R_002','I_001','0.25', 'cups'),
+('RI_016', 'R_002','I_002','1', ''),
+('RI_017', 'R_002','I_003','2', ''),
+('RI_018', 'R_002','I_004','4', ''),
+('RI_019', 'R_002','I_005','2', 'tsps'),
+('RI_020', 'R_002','I_006','1', 'tsps'),
+('RI_021', 'R_002','I_007','0.5', 'tsps'),
+('RI_022', 'R_002','I_008','28', 'oz'),
+('RI_023', 'R_002','I_009','1', 'cups'),
+('RI_024', 'R_002','I_010','4', 'cups'),
+('RI_025', 'R_002','I_011','2', 'cups'),
+('RI_026', 'R_002','I_012','1', 'tsps'),
+('RI_027', 'R_002','I_013','1', 'pinch'),
+('RI_028', 'R_002','I_014','1', 'pinch'),
+('RI_029', 'R_002','I_015','1', 'cups'),
+('RI_030', 'R_002','I_016','2', 'tbsps');
 
 DROP TABLE IF EXISTS SHOPPING_LIST;
 CREATE TABLE SHOPPING_LIST(
@@ -129,11 +130,12 @@ VALUES
 
 DROP TABLE IF EXISTS SHOPPING_LIST_DETAILS;
 CREATE TABLE SHOPPING_LIST_DETAILS(
+	sld_id					varchar(255) DEFAULT(uuid()) not null,
 	list_id 				varchar(255) DEFAULT(uuid()) not null,
 	ingredient_id 				varchar(255) DEFAULT(uuid()) not null,
 	quantity				decimal(13, 2),
 	unit 					varchar(255),
-	primary key (list_id, ingredient_id),
+	primary key (sld_id),
     foreign key (list_id) references SHOPPING_LIST(list_id) ON DELETE CASCADE,
 	foreign key (ingredient_id) references INGREDIENTS(ingredient_id)
 );
@@ -144,5 +146,8 @@ SELECT * FROM REGISTERED_USER;
 
 SELECT * FROM RECIPES;
 SELECT * FROM RECIPE_INGREDIENTS;
+SELECT * FROM INGREDIENTS;
+
+SELECT * FROM RECIPE_INGREDIENTS WHERE recipe_id = '805b2234-ea7a-4232-a69b-79cebda50b18' AND ingredient_id = 'bf61dfa4-70a1-4bcb-9f09-5b3654be1458';
 -- DELETE FROM SHOPPING_LIST_DETAILS WHERE list_id = "3a85ee34-2ff0-481c-8c31-d5d4a3ec1f7f";
 -- SELECT * FROM SHOPPING_LIST_DETAILS;
