@@ -21,13 +21,7 @@ serviceMethods.createList = async(newList) => {
 serviceMethods.getListsByUser = async(user) => {
     try {
         const usersLists = await List.getListsByUser(user);
-        if(usersLists.length){
-            return usersLists;
-        } else {
-            const error = new Error("User currently has no lists");
-            error.status = 404;
-            throw error;
-        }
+        return usersLists;
     } catch (err) {
         throw err;
     }
