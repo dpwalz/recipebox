@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/assets/environments/environment";
-import { RecipeResponse } from "../models/recipe.interface";
+import { RecipeResponse, SearchResults } from "../models/recipe.interface";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { DefaultResponse } from "../models/default.interface";
@@ -23,6 +23,10 @@ export class RecipeService {
 
     addRecipeToList(list: ShoppingLists, recipe: Recipe): Observable<DefaultResponse> {
         return this.http.post<DefaultResponse>(`${this.apiUrl}/lists/${list.list_id}/recipe/${recipe.recipe_id}`, {});
+    }
+
+    searchRecipes(searchTerm: string): Observable<SearchResults> {
+        return this.http.get<SearchResults>(`${this.apiUrl}/recipes/complexSearch/${searchTerm}`);
     }
 
 }

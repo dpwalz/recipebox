@@ -65,7 +65,7 @@ serviceMethods.spoonacularSearchRecipes = async( search_term ) => {
             headers: spoonacular_headers,
           });
           const results = await response.json();
-          return results;
+          return results.results;
     } catch (err) {
         throw err;
     }
