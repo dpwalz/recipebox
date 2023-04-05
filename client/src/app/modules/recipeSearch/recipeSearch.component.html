@@ -1,0 +1,10 @@
+<h2 class="p-card-header">Find New Recipes:</h2>
+<div class="card flex">
+    <div class="flex gap-2">
+        <span class="p-float-label">
+            <input id="recipeSearch" type="text" pInputText [(ngModel)]="searchTerm" />
+            <label htmlFor="recipeSearch">Enter Recipe Here</label>
+        </span>
+        <button pButton pRipple  icon="pi pi-search" [disabled]="!searchTerm"></button>
+    </div>
+</div>

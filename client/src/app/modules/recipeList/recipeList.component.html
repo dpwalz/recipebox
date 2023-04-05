@@ -1,9 +1,14 @@
 <p-confirmDialog></p-confirmDialog>
 <p-toast position="center"></p-toast> 
+
+<p-sidebar [(visible)]="sidebarVisible" [fullScreen]="true">
+    <app-recipe-search></app-recipe-search>
+</p-sidebar>
+
 <div class="justify-content-center" [style]="{paddingTop: '10px'}">
     <p-card header="Recipes" >
         <ng-template pTemplate="footer">
-            <button pButton pRipple icon="pi pi-search" label="Find New Recipes"></button>
+            <button pButton pRipple icon="pi pi-search" label="Find New Recipes" (click)="sidebarVisible = true"></button>
         </ng-template>
         <p *ngIf="recipes.length" >Click on the rows to add a recipe to your shopping list</p>
         <p-table *ngIf="recipes.length; else noRecipes" [value]="recipes" selectionMode="single" [(selection)]="selectedRecipe" dataKey="recipe_id"

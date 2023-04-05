@@ -14,6 +14,7 @@ export class RecipeListComponent implements OnChanges {
     @Input() recipes: Recipe[] = [];
     @Output() updateShoppingList = new EventEmitter<String>();
     selectedRecipe: Recipe | undefined;
+    sidebarVisible: boolean = false;
 
     constructor(
         private confirmationService: ConfirmationService,

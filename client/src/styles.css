@@ -5,7 +5,7 @@
 @import "primeng/resources/themes/vela-orange/theme.css";
 
 body {
-    background-color: var(--surface-b);
+    background-color: var(--surface-d);
     font-family: var(--font-family);
     color: var(--text-color);
   }

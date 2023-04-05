@@ -7,6 +7,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ToastModule } from "primeng/toast";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
+import { SidebarModule } from "primeng/sidebar";
+import { RecipeSearchModule } from "../recipeSearch/recipeSearch.module";
 
 @NgModule({
     imports: [
@@ -15,6 +17,8 @@ import { RippleModule } from "primeng/ripple";
         CommonModule,
         ConfirmDialogModule,
         RippleModule,
+        RecipeSearchModule,
+        SidebarModule,
         TableModule,
         ToastModule
     ],
