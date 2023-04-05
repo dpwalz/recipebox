@@ -31,70 +31,73 @@
 </p-dialog>
 
 <p-toast position="center"></p-toast> 
-<p-card >
-    <ng-template pTemplate="header">
-        <h2>Your Shopping Lists</h2>
-        <div  class="flex gap-3 justify-content-space-between">
-            <button pButton label="Create New List" icon="pi pi-plus" (click)="onClick()"></button>
-            <button [disabled]="!selectedList" type="text" pButton label="Go Shopping!" (click)="op.toggle($event)"></button>
-        </div> 
-    </ng-template>
-    <p *ngIf="" >Expand to see list contents</p>
-    <p-table [value]="shopping_lists" selectionMode="single" (onRowSelect)="selectList($event.data)" [(selection)]="selectedList" dataKey="list_id" [tableStyle]="{'min-width': '60rem'}">
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 5rem"></th>
-                <th pSortableColumn="name">Date Created <p-sortIcon field="creation_date"></p-sortIcon></th>
-                <th style="width: 15rem"></th>
-                <th style="width: 5rem"></th>
-            </tr>
+
+<div class="justify-content-center" [style]="{paddingTop: '10px'}">
+    <p-card header="Your Shopping Lists">
+            <div class="flex gap-3 justify-content-space-between">
+                <button pButton label="Create New List" icon="pi pi-plus" (click)="onClick()"></button>
+                <button [disabled]="!selectedList" type="text" pButton label="Go Shopping!" (click)="op.toggle($event)"></button>
+            </div> 
+        <p *ngIf="shopping_lists.length" >Expand to see list contents</p>
+        <p-table *ngIf="shopping_lists.length; else noShoppingLists" [value]="shopping_lists" selectionMode="single" (onRowSelect)="selectList($event.data)" [(selection)]="selectedList" dataKey="list_id" [tableStyle]="{'min-width': '60rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 5rem"></th>
+                    <th pSortableColumn="name">Date Created <p-sortIcon field="creation_date"></p-sortIcon></th>
+                    <th style="width: 15rem"></th>
+                    <th style="width: 5rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-shopping_list let-expanded="expanded">
+                <tr [pSelectableRow]="shopping_list">
+                    <td>
+                        <button type="button" pButton pRipple [pRowToggler]="shopping_list" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                    </td>
+                    <td>{{ shopping_list.creation_date | displayDate }}</td>
+                    <td>
+                        <p-button #elm type="text" icon="pi pi-plus" label="Add New Items" (click)="togglePanel(shopping_list)"></p-button>
+                    </td>
+                    <td>
+                        <p-button type="button" (click)="deleteList(shopping_list)" icon="pi pi-trash"></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="rowexpansion" let-shopping_list>
+                <tr>
+                    <td colspan="7">
+                        <div class="p-3">
+                            <p-table [value]="shopping_list.items" dataKey="ingredient_id">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th pSortableColumn="ingredient_name">Ingredient <p-sortIcon field="ingredient_name"></p-sortIcon></th>
+                                        <th pSortableColumn="quantity">Amount <p-sortIcon field="quantity"></p-sortIcon></th>
+                                        <th pSortableColumn="unit">Unit <p-sortIcon field="unit"></p-sortIcon></th>
+                                        <th style="width: 4rem"></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-item>
+                                    <tr>
+                                        <td>{{item.ingredient_name}}</td>
+                                        <td>{{item.quantity}}</td>
+                                        <td>{{item.unit}}</td>
+                                        <td><p-button type="button" (click)="itemClick(item)" icon="pi pi-file-edit"></p-button></td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td colspan="6">There are no items for this list yet.</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <ng-template #noShoppingLists>
+            <p>You have no lists.</p>
         </ng-template>
-        <ng-template pTemplate="body" let-shopping_list let-expanded="expanded">
-            <tr [pSelectableRow]="shopping_list">
-                <td>
-                    <button type="button" pButton pRipple [pRowToggler]="shopping_list" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                </td>
-                <td>{{ shopping_list.creation_date | displayDate }}</td>
-                <td>
-                    <p-button #elm type="text" icon="pi pi-plus" label="Add New Items" (click)="togglePanel(shopping_list)"></p-button>
-                </td>
-                <td>
-                    <p-button type="button" (click)="deleteList(shopping_list)" icon="pi pi-trash"></p-button>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="rowexpansion" let-shopping_list>
-            <tr>
-                <td colspan="7">
-                    <div class="p-3">
-                        <p-table [value]="shopping_list.items" dataKey="ingredient_id">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th pSortableColumn="ingredient_name">Ingredient <p-sortIcon field="ingredient_name"></p-sortIcon></th>
-                                    <th pSortableColumn="quantity">Amount <p-sortIcon field="quantity"></p-sortIcon></th>
-                                    <th pSortableColumn="unit">Unit <p-sortIcon field="unit"></p-sortIcon></th>
-                                    <th style="width: 4rem"></th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-item>
-                                <tr>
-                                    <td>{{item.ingredient_name}}</td>
-                                    <td>{{item.quantity}}</td>
-                                    <td>{{item.unit}}</td>
-                                    <td><p-button type="button" (click)="itemClick(item)" icon="pi pi-file-edit"></p-button></td>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="emptymessage">
-                                <tr>
-                                    <td colspan="6">There are no items for this list yet.</td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-</p-card>
+    </p-card>
+</div>
 
 
