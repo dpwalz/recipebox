@@ -4,12 +4,12 @@ import { RecipeService } from "src/app/services/recipe.service";
 
 // TODO: Angular15 image load from tutorial
 // TODO: Pagination to add more search terms
-// TODO: Add details 
 // TODO: Save Recipe 
 
 @Component({
     selector: 'app-recipe-search',
-    templateUrl: './recipeSearch.component.html'
+    templateUrl: './recipeSearch.component.html',
+    styleUrls: ['./recipeSearch.component.css']
 })
 export class RecipeSearchComponent {
 
