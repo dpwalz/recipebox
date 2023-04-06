@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { MessageService } from "primeng/api";
 import { RecipeResults } from "src/app/models/recipe.interface";
 import { RecipeService } from "src/app/services/recipe.service";
 
@@ -17,7 +18,8 @@ export class RecipeSearchComponent {
     searchResults: RecipeResults[] = [];
 
     constructor(
-        private recipeService: RecipeService
+        private recipeService: RecipeService,
+        private messageService: MessageService,
     ){}
 
     searchRecipes(){
@@ -37,4 +39,14 @@ export class RecipeSearchComponent {
         }
     }
 
+    saveRecipe(recipeIndex: number){
+        this.recipeService.saveRecipe(this.searchResults[recipeIndex])
+            .subscribe({next: (response) => {
+                                this.messageService.add({severity:"success",
+                                                            summary: `${response.data.recipe_name} was added to your personal recipe database!`
+                                                        });
+                        },
+                        error: (e) => console.log(e)
+                    });
+    }
 }

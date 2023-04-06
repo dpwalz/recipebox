@@ -19,7 +19,6 @@ modelMethods.getAllItems = () => {
 modelMethods.addNewItem = ( body ) => {
     return new Promise(async (resolve, reject) => {
         const { id, name } =  body;
-        console.log(`name: ${name}`);
         try{
             const insert = await connection.query(
                 `INSERT INTO INGREDIENTS(ingredient_id, ingredient_name) VALUES (?, ?)`,

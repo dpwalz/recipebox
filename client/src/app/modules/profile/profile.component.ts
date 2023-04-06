@@ -62,6 +62,20 @@ export class ProfileComponent implements OnInit {
         this.selectedList = event;
     }
 
+    updateRecipes(event: Event): void{
+        this.recipes = [];
+        this.recipeService.getUserRecipes()
+            .subscribe({next: (items) => {
+                            items.data.forEach(element => {
+                                this.recipes.push(element);
+                            });
+                        },
+                        error: (e) => {
+                            console.log(e);
+                        },
+            });
+    }
+
     
     
 }

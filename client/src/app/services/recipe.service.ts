@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/assets/environments/environment";
-import { DetailsResponse, RecipeResponse, RecipeResults, SearchResults } from "../models/recipe.interface";
+import { DetailsResponse, RecipeResponse, RecipeResults, SaveResponse, SearchResults } from "../models/recipe.interface";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { DefaultResponse } from "../models/default.interface";
@@ -33,4 +33,7 @@ export class RecipeService {
         return this.http.get<DetailsResponse>(`${this.apiUrl}/recipes/${recipe.id}/information`);
     }
 
+    saveRecipe(recipe: RecipeResults): Observable<SaveResponse> {
+        return this.http.post<SaveResponse>(`${this.apiUrl}/recipes/${recipe.id}/`, {});
+    }
 }

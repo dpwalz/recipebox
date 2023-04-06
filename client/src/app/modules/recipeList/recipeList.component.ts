@@ -13,6 +13,7 @@ export class RecipeListComponent implements OnChanges {
     @Input() selectedList: ShoppingLists | undefined;
     @Input() recipes: Recipe[] = [];
     @Output() updateShoppingList = new EventEmitter<String>();
+    @Output() updateRecipes = new EventEmitter<Event>();
     selectedRecipe: Recipe | undefined;
     sidebarVisible: boolean = false;
 
@@ -64,5 +65,9 @@ export class RecipeListComponent implements OnChanges {
                             error: (e) => console.log(e),
                             complete: () =>  this.updateShoppingList.emit('')
                         })
+    }
+
+    refreshRecipes(): void {
+        this.updateRecipes.emit();
     }
 }

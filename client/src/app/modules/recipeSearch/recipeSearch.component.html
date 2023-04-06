@@ -1,3 +1,4 @@
+<!-- <p-toast position="center"></p-toast>  -->
 <h2 class="p-card-header">Find New Recipes:</h2>
 <div class="card flex">
     <div class="flex gap-2">
@@ -16,7 +17,10 @@
                     <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="recipe.image" [alt]="recipe.title" />
                     <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                         <div class="flex flex-column align-items-center sm:align-items-start gap-3" [style]="{width: '100%'}">
-                            <div class="text-2xl font-bold text-900">{{ recipe.title }}</div>
+                            <div class="flex gap-3">
+                                <div class="text-2xl font-bold text-900">{{ recipe.title }}</div>
+                                <button pButton pRipple icon="pi pi-save" (click)="saveRecipe(rowIndex)" class="mb-2 p-button-rounded" ></button>
+                            </div>
                             <p-accordion (onOpen)="getDetails(rowIndex)" class="w-full">
                                 <p-accordionTab header="Details">
                                     <ng-template pTemplate="content">
@@ -30,19 +34,7 @@
                                     </ng-template>
                                 </p-accordionTab>
                             </p-accordion>
-                            <!-- <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
-                            <!-- <div class="flex align-items-center gap-3">
-                                <span class="flex align-items-center gap-2">
-                                    <i class="pi pi-tag"></i>
-                                    <span class="font-semibold">{{ product.category }}</span>
-                                </span>
-                                <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product)"></p-tag>
-                            </div> -->
                         </div>
-                        <!-- <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                            <span class="text-2xl font-semibold">{{'$'+ product.price }}</span>
-                            <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button>
-                        </div> -->
                     </div>
                 </div>
             </div>

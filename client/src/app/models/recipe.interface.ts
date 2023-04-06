@@ -20,6 +20,11 @@ export interface SearchResults {
     data: RecipeResults[]
 }
 
+export interface SaveResponse {
+    status: string;
+    data: SaveDetails;
+}
+
 export interface RecipeResults {
     id: number;
     title: string;
@@ -34,3 +39,9 @@ export interface RecipeDetails {
     servings: number;
     extendedIngredients: string[];
 }
+
+export interface SaveDetails {
+    recipe_name: string;
+}
+
+
