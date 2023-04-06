@@ -10,13 +10,26 @@
 </div>
 <div class="card">
     <p-dataView #dv *ngIf="searchResults.length > 0" [value]="searchResults">
-        <ng-template let-recipe pTemplate="listItem">
+        <ng-template let-recipe let-rowIndex="rowIndex" pTemplate="listItem">
             <div class="col-12">
                 <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
                     <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="recipe.image" [alt]="recipe.title" />
                     <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                        <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                        <div class="flex flex-column align-items-center sm:align-items-start gap-3" [style]="{width: '100%'}">
                             <div class="text-2xl font-bold text-900">{{ recipe.title }}</div>
+                            <p-accordion (onOpen)="getDetails(rowIndex)" class="w-full">
+                                <p-accordionTab header="Details">
+                                    <ng-template pTemplate="content">
+                                        <p innerHTML="{{recipe.details?.summary}}"></p>
+                                        <p><b>Ready In: </b>{{recipe.details?.readyInMinutes}} minutes</p>
+                                        <p><b>Serves: </b>{{recipe.details?.servings}}</p>
+                                        <p><b>Ingredients: </b></p>
+                                        <ul>
+                                            <li *ngFor="let ingredient of recipe.details?.extendedIngredients">{{ingredient}}</li>
+                                        </ul>
+                                    </ng-template>
+                                </p-accordionTab>
+                            </p-accordion>
                             <!-- <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
                             <!-- <div class="flex align-items-center gap-3">
                                 <span class="flex align-items-center gap-2">

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/assets/environments/environment";
-import { RecipeResponse, SearchResults } from "../models/recipe.interface";
+import { DetailsResponse, RecipeResponse, RecipeResults, SearchResults } from "../models/recipe.interface";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { DefaultResponse } from "../models/default.interface";
@@ -27,6 +27,10 @@ export class RecipeService {
 
     searchRecipes(searchTerm: string): Observable<SearchResults> {
         return this.http.get<SearchResults>(`${this.apiUrl}/recipes/complexSearch/${searchTerm}`);
+    }
+
+    getRecipeDetails(recipe: RecipeResults): Observable<DetailsResponse> {
+        return this.http.get<DetailsResponse>(`${this.apiUrl}/recipes/${recipe.id}/information`);
     }
 
 }

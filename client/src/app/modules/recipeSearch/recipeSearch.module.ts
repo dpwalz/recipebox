@@ -6,11 +6,13 @@ import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { DataViewModule } from 'primeng/dataview';
+import { AccordionModule } from 'primeng/accordion';
 
 
 
 @NgModule({
     imports: [
+        AccordionModule,
         ButtonModule, 
         CommonModule,
         DataViewModule,

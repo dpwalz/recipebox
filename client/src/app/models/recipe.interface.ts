@@ -3,6 +3,11 @@ export interface RecipeResponse {
     data: Recipe[];
 }
 
+export interface DetailsResponse {
+    status: string;
+    data: RecipeDetails;
+}
+
 export interface Recipe {
     recipe_id?: string;
     recipe_name?: string;
@@ -20,5 +25,12 @@ export interface RecipeResults {
     title: string;
     image: string;
     imageType: string;
+    details?: RecipeDetails
 }
 
+export interface RecipeDetails {
+    summary: string;
+    readyInMinutes: number;
+    servings: number;
+    extendedIngredients: string[];
+}
