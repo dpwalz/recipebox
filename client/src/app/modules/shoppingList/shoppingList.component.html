@@ -8,13 +8,12 @@
     </ng-template>
 </p-dialog>
 
-<p-overlayPanel  #op (onShow)="toggleOverlayPanel()" [showCloseIcon]="true">
-    <app-shopping-tool 
+<p-sidebar [(visible)]="sidebarVisible">
+    <app-shopping-tool  
         *ngIf="selectedList" 
         [selectedList]="selectedList.list_id"
-        [panelFlag]="panelFlag"
     ></app-shopping-tool>
-</p-overlayPanel>
+</p-sidebar>
 
 <p-dialog [(visible)]="displayUpdate">
    <app-update-item 
@@ -36,7 +35,7 @@
     <p-card header="Your Shopping Lists">
             <div class="flex gap-3 justify-content-space-between">
                 <button pButton label="Create New List" icon="pi pi-plus" (click)="onClick()"></button>
-                <button [disabled]="!selectedList" type="text" pButton label="Go Shopping!" (click)="op.toggle($event)"></button>
+                <button [disabled]="!selectedList" type="text" pButton label="Go Shopping!" (click)="sidebarVisible = true"></button>
             </div> 
         <p *ngIf="shopping_lists.length" >Expand to see list contents</p>
         <p-table *ngIf="shopping_lists.length; else noShoppingLists" [value]="shopping_lists" selectionMode="single" (onRowSelect)="selectList($event.data)" [(selection)]="selectedList" dataKey="list_id" [tableStyle]="{'min-width': '60rem'}">

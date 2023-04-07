@@ -15,6 +15,7 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import { ItemListModule } from "../itemsList/itemList.module";
 import { UpdateItemModule } from "../updateItem/updateItem.module";
 import { ShoppingToolModule } from "../shoppingTool/shoppingTool.module";
+import { SidebarModule } from "primeng/sidebar";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ShoppingToolModule } from "../shoppingTool/shoppingTool.module";
         RippleModule,
         SharedModule,
         ShoppingToolModule,
+        SidebarModule,
         TableModule,
         ToastModule,
         UpdateItemModule,

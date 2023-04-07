@@ -23,9 +23,6 @@
                             </div>
                             <p-accordion (onOpen)="getDetails(rowIndex)" class="w-full">
                                 <p-accordionTab header="Details">
-                                    <!-- <ng-template pTemplate="content">
-                                        
-                                    </ng-template> -->
                                     <ng-template  pTemplate="content">
                                         <i *ngIf="!recipe.details" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
                                         <p *ngIf="recipe.details" class="isDisabled" innerHTML="{{recipe.details?.summary}}"></p>

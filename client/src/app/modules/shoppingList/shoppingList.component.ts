@@ -3,7 +3,6 @@ import { ConfirmationService } from "primeng/api";
 import { ShoppingList, ShoppingLists } from "src/app/models/shoppingList.interface";
 import { ShoppingListService } from "src/app/services/shoppingList.service";
 import { DatePipe } from "@angular/common";
-import { Overlay } from "primeng/overlay";
 
 
 @Component({
@@ -21,7 +20,7 @@ export class ShoppingListComponent implements OnChanges{
     selectedItem!: ShoppingList;
     displayPanel: boolean = false;
     displayUpdate: boolean = false;
-    panelFlag: boolean = true;
+    sidebarVisible: boolean = false;
 
     constructor(
         private listService: ShoppingListService,
@@ -92,10 +91,6 @@ export class ShoppingListComponent implements OnChanges{
     togglePanel(list: ShoppingLists) {
         this.selectedList = list;
         this.displayPanel = true;
-    }
-
-    toggleOverlayPanel() {
-        this.panelFlag = !this.panelFlag;
     }
 }
 

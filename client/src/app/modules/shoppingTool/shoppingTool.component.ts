@@ -10,7 +10,7 @@ import { ShoppingListService } from "src/app/services/shoppingList.service";
 export class ShoppingToolComponent implements OnChanges{
 
     @Input() selectedList!: string;
-    @Input() panelFlag!: boolean;
+    // @Input() panelFlag!: boolean;
     currentList!: ShoppingList[];
 
     constructor(
