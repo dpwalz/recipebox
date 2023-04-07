@@ -23,11 +23,15 @@
                             </div>
                             <p-accordion (onOpen)="getDetails(rowIndex)" class="w-full">
                                 <p-accordionTab header="Details">
-                                    <ng-template pTemplate="content">
-                                        <p class="isDisabled" innerHTML="{{recipe.details?.summary}}"></p>
-                                        <p><b>Ready In: </b>{{recipe.details?.readyInMinutes}} minutes</p>
-                                        <p><b>Serves: </b>{{recipe.details?.servings}}</p>
-                                        <p><b>Ingredients: </b></p>
+                                    <!-- <ng-template pTemplate="content">
+                                        
+                                    </ng-template> -->
+                                    <ng-template  pTemplate="content">
+                                        <i *ngIf="!recipe.details" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+                                        <p *ngIf="recipe.details" class="isDisabled" innerHTML="{{recipe.details?.summary}}"></p>
+                                        <p *ngIf="recipe.details"><b>Ready In: </b>{{recipe.details?.readyInMinutes}} minutes</p>
+                                        <p *ngIf="recipe.details"><b>Serves: </b>{{recipe.details?.servings}}</p>
+                                        <p *ngIf="recipe.details"><b>Ingredients: </b></p>
                                         <ul>
                                             <li *ngFor="let ingredient of recipe.details?.extendedIngredients">{{ingredient}}</li>
                                         </ul>
