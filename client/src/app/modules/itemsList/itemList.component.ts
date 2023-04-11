@@ -14,7 +14,7 @@ export class ItemListComponent implements OnInit{
     display: boolean = false;
     items_list: ShoppingList[] = [];
     // Have option for dry, bulk, or wet products. 
-    units: String[] = ['pinch', 'tsp', 'tbsp', 'cup', 'bulk', 'oz']
+    units: String[] = ['pinch', 'tsp', 'tbsp', 'cup', '', 'oz']
     first: number = 0;
     rows: number = 10;
     private _list_id: string = '';

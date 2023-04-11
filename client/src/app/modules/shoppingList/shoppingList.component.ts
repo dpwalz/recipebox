@@ -10,6 +10,7 @@ import { DatePipe } from "@angular/common";
     templateUrl: './shoppingList.component.html'
 })
 
+
 export class ShoppingListComponent implements OnChanges{
 
     @Input() shopping_lists: ShoppingLists[] = [];

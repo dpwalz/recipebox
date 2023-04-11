@@ -3,9 +3,6 @@ import { MessageService } from "primeng/api";
 import { RecipeResults } from "src/app/models/recipe.interface";
 import { RecipeService } from "src/app/services/recipe.service";
 
-// TODO: Angular15 image load from tutorial
-// TODO: Pagination to add more search terms
-
 @Component({
     selector: 'app-recipe-search',
     templateUrl: './recipeSearch.component.html',

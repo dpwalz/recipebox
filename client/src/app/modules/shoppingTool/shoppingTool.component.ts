@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { ShoppingList } from "src/app/models/shoppingList.interface";
-import { ShoppingListService } from "src/app/services/shoppingList.service";
+import { ShoppingListService } from "src/app/services/shoppingList.service"; 
 
 @Component({
     selector: 'app-shopping-tool',
@@ -10,7 +10,6 @@ import { ShoppingListService } from "src/app/services/shoppingList.service";
 export class ShoppingToolComponent implements OnChanges{
 
     @Input() selectedList!: string;
-    // @Input() panelFlag!: boolean;
     currentList!: ShoppingList[];
 
     constructor(

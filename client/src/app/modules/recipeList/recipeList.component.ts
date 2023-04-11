@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { ConfirmationService, MessageService } from "primeng/api";
 import { ShoppingLists } from "src/app/models/shoppingList.interface";
 import { RecipeService } from "src/app/services/recipe.service";
-import { Recipe } from "../../models/recipe.interface";
+import { Recipe } from "../../models/recipe.interface"; 
 
 @Component({
     selector: 'app-recipe-list',
