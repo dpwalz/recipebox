@@ -21,12 +21,13 @@ class DatabaseConnection {
                 user: process.env.DB_USER,
                 database: process.env.DB_NAME,
                 password: process.env.DB_PASS,
+                host: process.env.DB_HOST
             };
-            if(process.env.NODE_ENV === 'production'){
-                this.config.socketPath = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
-            } else {
-                this.config.host = process.env.DB_HOST;
-            }
+            // if(process.env.NODE_ENV === 'production'){
+            //     this.config.socketPath = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
+            // } else {
+            //     this.config.host = process.env.DB_HOST;
+            // }
             
             this.instance.getDatabaseConnection();
         }
