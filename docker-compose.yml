@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # db:
+  #   image: mysql:8.0.21
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=$DB_PASS
+  #     - MYSQL_DATABASE=$MYSQL_DB
+  #   ports:
+  #     - $DB_LOCAL_PORT:$DB_DOCKER_PORT
+  #   volumes:
+  #      - ./database:/docker-entrypoint-initdb.d:ro
+  server:
+    depends_on:
+      - db
+    build: ./server
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASS=$DB_PASS
+      - DB_NAME=$MYSQL_DB
+      # - DB_PORT=$DB_DOCKER_PORT
+      - JWT_KEY=$JWT_KEY
+      - S_API_KEY=$S_API_KEY
+      - S_API_URL=$S_API_URL
+    stdin_open: true
+    tty: true
+  # client:
+  #   depends_on:
+  #     - server
+  #   build: ./client
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   ports:
+  #     - $CLIENT_LOCAL_PORT:$CLIENT_DOCKER_PORT
+  #   environment:
+  #     - 
+
+
+

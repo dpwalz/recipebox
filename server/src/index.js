@@ -8,7 +8,7 @@ const v1UserRouter = require("./v1/routes/userRoutes");
 const v1ListRouter = require("./v1/routes/listRoutes");
 
 const app = express();
-const PORT = process.env.APP_PORT || 5000;
+const PORT = process.env.NODE_DOCKER_PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
