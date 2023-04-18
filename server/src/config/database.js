@@ -38,7 +38,7 @@ class DatabaseConnection {
         }
         return this.connection;
     }
-
+    }
     query(sql, args) {
         return util
             .promisify(this.connection.query)
