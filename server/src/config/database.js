@@ -13,19 +13,7 @@ class DatabaseConnection {
 
     static getDatabaseInstance() {
         if(this.instance == null) {
-            this.instance = new DatabaseConnection();
-            // this.config = {
-            //     user: process.env.DB_USER,
-            //     database: process.env.DB_NAME,
-            //     password: process.env.DB_PASS,
-            //     host: process.env.DB_HOST
-            // };
-            // if(process.env.NODE_ENV === 'production'){
-            //     this.config.socketPath = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
-            // } else {
-            //     this.config.host = process.env.DB_HOST;
-            // }
-            
+            this.instance = new DatabaseConnection();           
             this.instance.getDatabaseConnection();
         }
         return this.instance;
@@ -33,6 +21,14 @@ class DatabaseConnection {
 
     getDatabaseConnection() {
         if (!this.connection) {
+            if(process.env.NODE_ENV === 'production') {
+                this.connection = createConnection({
+                    user: process.env.DB_USER,
+                    database: process.env.DB_NAME,
+                    password: process.env.DB_PASS,
+                    socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
+                });
+            } else {
             this.connection = createConnection({
                 user: process.env.DB_USER,
                 database: process.env.DB_NAME,
@@ -40,7 +36,6 @@ class DatabaseConnection {
                 host: process.env.DB_HOST
             });
         }
-        // console.log(this.connection);
         return this.connection;
     }
 
