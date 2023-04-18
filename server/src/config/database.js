@@ -1,4 +1,4 @@
-const { createConnection } = require("mysql");
+const { createConnection } = require("mysql2");
 const util = require("util");
 
 class DatabaseConnection {

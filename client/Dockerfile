@@ -18,3 +18,8 @@ COPY --from=build /usr/src/app/dist/client /usr/share/nginx/html
 
 # Run the web service on container startup.
 CMD ["nginx", "-g", "daemon off;"]
+
+
+
+
+
