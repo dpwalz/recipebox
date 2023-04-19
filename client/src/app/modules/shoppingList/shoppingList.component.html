@@ -72,20 +72,23 @@
                 <tr>
                     <td colspan="7">
                         <div class="p-3">
-                            <p-table [value]="shopping_list.items" dataKey="ingredient_id">
+                            <p-table [value]="shopping_list.items" 
+                                dataKey="ingredient_id"
+                                responsiveLayout="stack" 
+                                [breakpoint]="'426px'">
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th pSortableColumn="ingredient_name">Ingredient <p-sortIcon field="ingredient_name"></p-sortIcon></th>
-                                        <th pSortableColumn="quantity">Amount <p-sortIcon field="quantity"></p-sortIcon></th>
-                                        <th pSortableColumn="unit">Unit <p-sortIcon field="unit"></p-sortIcon></th>
+                                        <th>Amount</th>
+                                        <th>Unit</th>
                                         <th style="width: 4rem"></th>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-item>
                                     <tr>
-                                        <td>{{item.ingredient_name}}</td>
-                                        <td>{{item.quantity}}</td>
-                                        <td>{{item.unit}}</td>
+                                        <td style="justify-content: left;"><span class="p-column-title" style="padding-right: 10px;">Ingredient:</span>{{item.ingredient_name}}</td>
+                                        <td style="justify-content: left;"><span class="p-column-title" style="padding-right: 10px;">Amount:</span>{{item.quantity}}</td>
+                                        <td style="justify-content: left;"><span class="p-column-title" style="padding-right: 10px;">Unit:</span>{{item.unit}}</td>
                                         <td><p-button type="button" (click)="itemClick(item)" icon="pi pi-file-edit"></p-button></td>
                                     </tr>
                                 </ng-template>
