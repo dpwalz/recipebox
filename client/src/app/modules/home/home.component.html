@@ -1,16 +1,19 @@
 
 <div class="grid grid-nogutter surface-section text-800">
-    <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+    <div class="col-12 xl:col-6 p-6 text-center md:text-left flex align-items-center ">
         <section>
             <span class="block text-6xl font-bold mb-1">Welcome To RecipeBox!</span>
-            <div class="text-6xl text-primary font-bold mb-3">Save your recipes and easily create shopping lists for your next meal.</div>
+            <div class="text-6xl text-primary font-bold mb-3">Keep your recipes organized and effortlessly create shopping lists for upcoming meals.</div>
             <p class="mt-0 mb-4 text-700 line-height-3">Login or Register to get started!</p>
             
             <button routerLink="/login" pButton pRipple label="Login" type="button" class="mr-3 p-button-outlined"></button>
             <button routerLink="/register" pButton pRipple label="Register" type="button" class="p-button-outlined"></button>
         </section>
     </div>
-    <div class="col-12 md:col-6 overflow-hidden">
+    <div class="col-12 xl:col-6 overflow-hidden hidden-md hidden-sm hidden-xs">
         <img src="assets/images/happy_recipe_box.png" alt="Image" class="md:ml-auto block md:h-full" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
+    </div>
+    <div class="col-12 hidden-lg hidden-xl">
+        <img src="assets/images/happy_recipe_box.png" alt="Image" class="md:ml-auto block md:h-full" style="width: 100%">
     </div>
 </div>
