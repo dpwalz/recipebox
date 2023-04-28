@@ -8,16 +8,18 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { ToastModule } from "primeng/toast";
+import { PasswordModule } from "primeng/password";
 
 
 @NgModule({
     imports: [
         ButtonModule,
-        RippleModule,
-        InputTextModule,
-        RegisterRoutingModule,
-        ReactiveFormsModule,
         CommonModule,
+        InputTextModule,
+        PasswordModule,
+        ReactiveFormsModule,
+        RegisterRoutingModule,
+        RippleModule,
         RouterModule,
         ToastModule,
     ],
