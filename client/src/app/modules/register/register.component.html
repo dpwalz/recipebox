@@ -1,22 +1,63 @@
 <div class="wrapper">
     <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
         <div class="text-center mb-5">
-            <img src="assets/images/happy_recipe_box.png" alt="Image" height="50" class="mb-3">
-            <div class="text-900 text-3xl font-medium mb-3">Welcome To RecipeBox!</div>
-            <span class="text-600 font-medium line-height-3">We just need a little information to get you started</span>
+            <img src="assets/images/happy_recipe_box.png" 
+                alt="Image" 
+                height="50" 
+                class="mb-3">
+            <div class="text-900 text-3xl font-medium mb-3">
+                Welcome To RecipeBox!
+            </div>
+            <span class="text-600 font-medium line-height-3">
+                We just need a little information to get you started
+            </span>
         </div>
         
-        <form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
-            <label for="first_name" class="block text-900 font-medium mb-2">First Name</label>
-            <input formControlName="first_name" id="first_name" type="text" placeholder="Paul" pInputText class="w-full mb-3">
-    
-            <label for="last_name" class="block text-900 font-medium mb-2">First Name</label>
-            <input formControlName="last_name" id="last_name" type="text" placeholder="Prudehomme" pInputText class="w-full mb-3">
-    
-            <label for="email1" class="block text-900 font-medium mb-2">Email</label>
-            <input formControlName="email_address" id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
-    
-            <label for="password1" class="block text-900 font-medium mb-2">Password</label>
+        <form *ngIf="formGroup" 
+            [formGroup]="formGroup" 
+            (ngSubmit)="onSubmit(formGroup.value)"
+        >
+            <label for="first_name" 
+                class="block text-900 font-medium mb-2"
+            >
+                First Name
+            </label>
+            <input formControlName="first_name" 
+                id="first_name" 
+                type="text" 
+                placeholder="Paul" 
+                pInputText 
+                class="w-full mb-3"
+            >
+            <label for="last_name" 
+                class="block text-900 font-medium mb-2"
+            >
+                First Name
+            </label>
+            <input formControlName="last_name" 
+                id="last_name" 
+                type="text" 
+                placeholder="Prudehomme" 
+                pInputText 
+                class="w-full mb-3"
+            >
+            <label for="email1" 
+                class="block text-900 font-medium mb-2"
+            >
+                Email
+            </label>
+            <input formControlName="email_address" 
+                id="email1" 
+                type="text" 
+                placeholder="Email address" 
+                pInputText 
+                class="w-full mb-3"
+            >
+            <label for="password1" 
+                class="block text-900 font-medium mb-2"
+            >
+                Password
+            </label>
             <p-password 
                 formControlName="password" 
                 id="password1" 
@@ -27,10 +68,20 @@
                 styleClass="p-input-icon-right" 
                 [style]="{'width':'100%', 'margin-bottom': '1rem'}" 
                 [toggleMask]="true" 
-            ></p-password>   
-            <button type="submit" [disabled]="!formGroup.valid" pButton pRipple label="Register" icon="pi pi-user-edit" class="w-full"></button>
+            >
+            </p-password>   
+            <button type="submit" 
+                [disabled]="!formGroup.valid" 
+                pButton 
+                pRipple 
+                label="Register" 
+                icon="pi pi-user-edit" 
+                class="w-full"
+            >
+            </button>
         </form>
     </div>
 </div>
-<p-toast position="center"></p-toast> 
+<p-toast position="center">
+</p-toast> 
 
