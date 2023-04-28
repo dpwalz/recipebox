@@ -5,6 +5,7 @@ import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { InputTextModule } from "primeng/inputtext";
 import { CommonModule } from "@angular/common";
+import { PasswordModule } from 'primeng/password';
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ToastModule } from "primeng/toast";
@@ -14,9 +15,10 @@ import { ToastModule } from "primeng/toast";
     imports: [
         LoginRoutingModule,
         ButtonModule,
-        RippleModule,
         InputTextModule,
+        PasswordModule,
         ReactiveFormsModule,
+        RippleModule,
         RouterModule, 
         CommonModule,
         ToastModule

@@ -8,11 +8,11 @@
         </div>
     
         <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
-            <label for="email1" class="block text-900 font-medium mb-2">Email</label>
-            <input formControlName="email_address" id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
+            <label for="email_address1" class="block text-900 font-medium mb-2">Email</label>
+            <input formControlName="email_address" id="email_address1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
     
             <label for="password1" class="block text-900 font-medium mb-2">Password</label>
-            <input formControlName="password" id="password1" type="password" placeholder="Password" pInputText class="w-full mb-3">
+            <p-password formControlName="password" id="password1" type="password" placeholder="Password"  [style]="{'width':'100%'}" [toggleMask]="true" inputStyleClass="w-full" class="mb-3"></p-password>
     
             <div class="flex align-items-center justify-content-between mb-6">
                 <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>

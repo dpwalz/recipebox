@@ -9,7 +9,6 @@ import { PrimeNGConfig } from 'primeng/api';
 // TODO: RECIPESEARCH: Angular15 image load from tutorial
 // TODO: RECIPESEARCH: Pagination to add more search terms
 // TODO: TABLES - Make them the size of the screen so you can see the buttons. (adjust items, shopping lists are good now)
-// TODO: Remove sortable feature for unit and quantity (doesnt work that well)
 // TODO: ADD name to shopping list
 // TODO: DO something with the recipe description!
 
