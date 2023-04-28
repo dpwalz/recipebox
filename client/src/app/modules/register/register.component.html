@@ -16,6 +16,7 @@
         <form *ngIf="formGroup" 
             [formGroup]="formGroup" 
             (ngSubmit)="onSubmit(formGroup.value)"
+            class="mb-3"
         >
             <label for="first_name" 
                 class="block text-900 font-medium mb-2"
@@ -80,6 +81,15 @@
             >
             </button>
         </form>
+        <span class="text-600 font-medium line-height-3"
+        >
+            Already have an account?
+        </span>
+        <a routerLink="/login" 
+            class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
+        >
+            Sign In 
+        </a>
     </div>
 </div>
 <p-toast position="center">
