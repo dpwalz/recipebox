@@ -10,27 +10,67 @@
     </div>
 </div>
 <div class="card">
-    <p-dataView #dv *ngIf="searchResults.length > 0" [value]="searchResults">
-        <ng-template let-recipe let-rowIndex="rowIndex" pTemplate="listItem">
+    <p-dataView #dv 
+        *ngIf="searchResults.length > 0" 
+        [value]="searchResults"
+    >
+        <ng-template let-recipe 
+            let-rowIndex="rowIndex" 
+            pTemplate="listItem"
+        >
             <div class="col-12">
                 <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-                    <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" width="256" height="190" [ngSrc]="recipe.image" [alt]="recipe.title" />
+                    <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" 
+                        width="256" 
+                        height="190"
+                        [style]="{'height':'auto'}"
+                        [ngSrc]="recipe.image" 
+                        [alt]="recipe.title" 
+                    />
                     <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                        <div class="flex flex-column align-items-center sm:align-items-start gap-3" [style]="{width: '100%'}">
+                        <div class="flex flex-column align-items-center sm:align-items-start gap-3" 
+                            [style]="{width: '100%'}"
+                        >
                             <div class="flex gap-3">
-                                <div class="text-2xl font-bold text-900">{{ recipe.title }}</div>
-                                <button pButton pRipple icon="pi pi-save" (click)="saveRecipe(rowIndex)" class="mb-2 p-button-rounded" ></button>
+                                <div class="text-2xl font-bold text-900">
+                                    {{ recipe.title }}
+                                </div>
+                                <button pButton 
+                                    pRipple 
+                                    icon="pi pi-save" 
+                                    (click)="saveRecipe(rowIndex)" 
+                                    class="mb-2 p-button-rounded" 
+                                >
+                                </button>
                             </div>
-                            <p-accordion (onOpen)="getDetails(rowIndex)" class="w-full">
+                            <p-accordion (onOpen)="getDetails(rowIndex)" 
+                                class="w-full"
+                            >
                                 <p-accordionTab header="Details">
                                     <ng-template  pTemplate="content">
-                                        <i *ngIf="!recipe.details" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-                                        <p *ngIf="recipe.details" class="isDisabled" innerHTML="{{recipe.details?.summary}}"></p>
-                                        <p *ngIf="recipe.details"><b>Ready In: </b>{{recipe.details?.readyInMinutes}} minutes</p>
-                                        <p *ngIf="recipe.details"><b>Serves: </b>{{recipe.details?.servings}}</p>
-                                        <p *ngIf="recipe.details"><b>Ingredients: </b></p>
+                                        <i *ngIf="!recipe.details" 
+                                            class="pi pi-spin pi-spinner" 
+                                            style="font-size: 2rem"
+                                        >
+                                        </i>
+                                        <p *ngIf="recipe.details" 
+                                            class="isDisabled" 
+                                            innerHTML="{{recipe.details?.summary}}"
+                                        >
+                                        </p>
+                                        <p *ngIf="recipe.details">
+                                            <b>Ready In: </b>{{recipe.details?.readyInMinutes}} minutes
+                                        </p>
+                                        <p *ngIf="recipe.details">
+                                            <b>Serves: </b>{{recipe.details?.servings}}
+                                        </p>
+                                        <p *ngIf="recipe.details">
+                                            <b>Ingredients: </b>
+                                        </p>
                                         <ul>
-                                            <li *ngFor="let ingredient of recipe.details?.extendedIngredients">{{ingredient}}</li>
+                                            <li *ngFor="let ingredient of recipe.details?.extendedIngredients">
+                                                {{ingredient}}
+                                            </li>
                                         </ul>
                                     </ng-template>
                                 </p-accordionTab>
