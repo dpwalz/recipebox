@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
     }
     
     onSubmit(request: Login): void {
-        console.log(request);
         this.authService.login(request)
             .subscribe({next: () => console.log("log in succeed"),
                         error: (e) => {

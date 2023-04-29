@@ -5,56 +5,106 @@
     <ng-template pTemplate="header">
         Enter the name of your new item: 
     </ng-template>
-    <input pInputText type="text" placeholder="Item Name" autocomplete="off" [(ngModel)]="itemInput">
+    <input pInputText 
+        type="text" 
+        placeholder="Item Name" 
+        autocomplete="off" 
+        [(ngModel)]="itemInput"
+    >
     <ng-template pTemplate="footer">
         <span class="p-buttonset">
-            <button class="p-button-sm" pButton 
+            <button class="p-button-sm" 
+                pButton 
                 type="button" 
                 [disabled]="!itemInput" 
                 (click)="addNewItem(itemInput)" 
                 icon="pi pi-check" 
-                label="Add" ></button>
+                label="Add" 
+            >
+            </button>
         </span>
     </ng-template>
 </p-dialog>
 
 <div class="card">
     <h3>Add Items To Your List!</h3>
-        <p-table #dt1 [value]="items_list" 
-        dataKey="id" 
-        editMode="row" 
-        [rows]="rows"
-        [totalRecords]="items_list.length" 
-        [showCurrentPageReport]="true" 
-        [rowsPerPageOptions]="[5,10,50]"
-        [paginator]="true" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [globalFilterFields]="['ingredient_name']"
+        <p-table #dt1 
+            [value]="items_list" 
+            dataKey="id" 
+            editMode="row" 
+            responsiveLayout="stack" 
+            [breakpoint]="'600px'"
+            [rows]="rows"
+            [totalRecords]="items_list.length" 
+            [showCurrentPageReport]="true" 
+            [rowsPerPageOptions]="[5,10,50]"
+            [paginator]="true" 
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [globalFilterFields]="['ingredient_name']"
         >
             <ng-template pTemplate="caption">
                 <div class="p-d-flex">
                     <span class="p-input-icon-left p-ml-auto">
-                        <i class="pi pi-search"></i>
-                        <input pInputText #textInput type="text" (input)="dt1.filterGlobal(textInput.value, 'contains')" placeholder="Search keyword" />
+                        <i class="pi pi-search">
+                        </i>
+                        <input pInputText 
+                            #textInput 
+                            type="text" 
+                            (input)="dt1.filterGlobal(textInput.value, 'contains')" 
+                            placeholder="Search keyword" 
+                        />
                     </span>
                     <span>
-                        <p>Can't Find What you Want? Just add a new Item to the List!</p>
-                        <button pButton pRipple label="New Item" type="button" icon="pi pi-plus" (click)="toggle()" class="p-button-rounded"></button>
+                        <p>
+                            Can't Find What you Want? Just add a new Item to the List!
+                        </p>
+                        <button pButton 
+                            pRipple 
+                            label="New Item" 
+                            type="button" 
+                            icon="pi pi-plus" 
+                            (click)="toggle()" 
+                            class="p-button-rounded"
+                        >
+                        </button>
                     </span>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width:20%">Name</th>
-                    <th style="width:20%">Quantity</th>
-                    <th style="width:20%">Unit</th>
-                    <th style="width:20%"></th>
+                    <th style="width:20%">
+                        Name
+                    </th>
+                    <th style="width:20%">
+                        Quantity
+                    </th>
+                    <th style="width:20%">
+                        Unit
+                    </th>
+                    <th style="width:20%">
+                    </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-item let-editing="editing" let-ri="rowIndex">
+            <ng-template pTemplate="body" 
+                let-item 
+                let-editing="editing" 
+                let-ri="rowIndex"
+            >
                 <tr [pEditableRow]="item">
-                    <td>{{item.ingredient_name}}</td>
-                    <td>
+                    <td style="justify-content: left;">
+                        <span class="p-column-title" 
+                            style="padding-right: 10px;"
+                        >
+                            Name:
+                        </span>
+                        <b>{{item.ingredient_name}}</b>
+                    </td>
+                    <td style="justify-content: left;">
+                        <span class="p-column-title" 
+                        style="padding-right: 10px;"
+                        >
+                            Quantity:
+                        </span>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
                                 <p-inputNumber 
@@ -63,22 +113,58 @@
                                 [maxFractionDigits]="2" 
                                 [(ngModel)]="item.quantity" 
                                 [min]="0"
-                                ></p-inputNumber>
+                                >
+                                </p-inputNumber>
                             </ng-template>
                         </p-cellEditor>
                     </td>
-                    <td>
+                    <td style="justify-content: left;">
+                        <span class="p-column-title" 
+                        style="padding-right: 10px;"
+                        >
+                            Unit:
+                        </span>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <p-dropdown [options]="units" appendTo="body" [(ngModel)]="item.unit" [style]="{'width':'100%'}"></p-dropdown>
+                                <p-dropdown [options]="units" 
+                                    appendTo="body" 
+                                    [(ngModel)]="item.unit" 
+                                    [style]="{'width':'100%'}"
+                                >
+                                </p-dropdown>
                             </ng-template>
                         </p-cellEditor>
                     </td>
                     <td>
                         <div class="flex align-items-center justify-content-center gap-2">
-                            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-                            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSubmit(item)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
-                            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" class="p-button-rounded p-button-text p-button-danger"></button>
+                            <button *ngIf="!editing" 
+                                pButton 
+                                pRipple 
+                                type="button" 
+                                pInitEditableRow 
+                                icon="pi pi-pencil" 
+                                class="p-button-rounded p-button-text"
+                            >
+                            </button>
+                            <button *ngIf="editing" 
+                                pButton 
+                                pRipple 
+                                type="button" 
+                                pSaveEditableRow 
+                                icon="pi pi-check" 
+                                (click)="onRowEditSubmit(item)" 
+                                class="p-button-rounded p-button-text p-button-success mr-2"
+                            >
+                            </button>
+                            <button *ngIf="editing" 
+                                pButton 
+                                pRipple 
+                                type="button" 
+                                pCancelEditableRow 
+                                icon="pi pi-times" 
+                                class="p-button-rounded p-button-text p-button-danger"
+                            >
+                            </button>
                         </div>
                     </td>
                 </tr>

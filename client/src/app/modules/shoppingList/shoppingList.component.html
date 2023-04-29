@@ -1,9 +1,26 @@
-<p-dialog *ngIf="selectedItem" [(visible)]="display" [style]="{width: '50vw'}">
+<p-dialog *ngIf="selectedItem" 
+    [(visible)]="display" 
+    [style]="{width: '50vw'}"
+>
     Select Action to complete on Item: {{selectedItem.ingredient_name}}
     <ng-template pTemplate="footer">
         <span class="p-buttonset">
-            <button class="p-button-sm"  pButton type="button" icon="pi pi-trash" label="Remove" (click)="removeItem()"></button>
-            <button class="p-button-sm" pButton type="button" icon="pi pi-pencil" label="Edit" (click)="editItem()"></button>
+            <button class="p-button-sm"  
+                pButton 
+                type="button" 
+                icon="pi pi-trash" 
+                label="Remove" 
+                (click)="removeItem()"
+            >
+            </button>
+            <button class="p-button-sm" 
+                pButton 
+                type="button" 
+                icon="pi pi-pencil" 
+                label="Edit" 
+                (click)="editItem()"
+            >
+            </button>
         </span>
     </ng-template>
 </p-dialog>
