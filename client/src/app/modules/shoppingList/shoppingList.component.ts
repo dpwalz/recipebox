@@ -89,8 +89,8 @@ export class ShoppingListComponent implements OnChanges{
         })
     }
 
-    togglePanel(list: ShoppingLists) {
-        this.selectedList = list;
+    togglePanel(index: number) {
+        this.selectedList = this.shopping_lists[index];
         this.displayPanel = true;
     }
 }

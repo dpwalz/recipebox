@@ -3,6 +3,8 @@
         <p-table #dt1 [value]="[item]" 
         dataKey="id" 
         editMode="row"
+        responsiveLayout="stack" 
+        [breakpoint]="'600px'" 
         >
             <ng-template pTemplate="header">
                 <tr>
@@ -14,8 +16,8 @@
             </ng-template>
             <ng-template pTemplate="body" let-item let-editing="editing" let-ri="rowIndex">
                 <tr [pEditableRow]="item">
-                    <td>{{item.ingredient_name}}</td>
-                    <td>
+                    <td style="justify-content: left;"><span class="p-column-title" style="padding-right: 10px;">Ingredient:</span>{{item.ingredient_name}}</td>
+                    <td style="justify-content: left;"><span class="p-column-title" style="padding-right: 10px;">Quantity:</span>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
                                 <p-inputNumber 
@@ -28,7 +30,7 @@
                             </ng-template>
                         </p-cellEditor>
                     </td>
-                    <td>
+                    <td style="justify-content: left;"><span class="p-column-title" style="padding-right: 10px;">Unit:</span>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
                                 <p-dropdown [options]="units" appendTo="body" [(ngModel)]="item.unit" [style]="{'width':'100%'}"></p-dropdown>
